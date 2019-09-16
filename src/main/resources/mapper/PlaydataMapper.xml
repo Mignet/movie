@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v5ent.movie.mapper.PlaydataMapper">
+	<!-- Result Map-->
+	<resultMap  type="com.v5ent.movie.entity.Playdata" id="BaseResultMap">
+		<result column="v_id" property="vId" jdbcType="INTEGER"/>
+		<result column="tid" property="tid" jdbcType="SMALLINT"/>
+		<result column="body" property="body" jdbcType="LONGVARCHAR"/>
+		<result column="body1" property="body1" jdbcType="LONGVARCHAR"/>
+	</resultMap>
+	
+  <sql id="Base_Column_List">
+    <trim suffixOverrides=",">
+	    	v_id,
+	    	tid,
+	    	body,
+	    	body1,
+    </trim>
+  </sql>
+  
+ <sql id="Base_Column_List_T">
+    <trim suffixOverrides=",">
+	    	t.v_id,
+	    	t.tid,
+	    	t.body,
+	    	t.body1,
+    </trim>
+  </sql>  
+  
+  <sql id="Base_Condition">
+		<if test=" null != vId ">
+			and v_id = #{vId}
+		</if>
+		<if test=" null != tid ">
+			and tid = #{tid}
+		</if>
+		<if test=" null != body and ''!= body  ">
+			and body = #{body}
+		</if>
+		<if test=" null != body1 and ''!= body1  ">
+			and body1 = #{body1}
+		</if>
+  </sql>
+  
+  <select id="selectOneByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.movie.entity.Playdata">
+		select <include refid="Base_Column_List" /> from sea_playdata 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.movie.entity.Playdata">
+		select <include refid="Base_Column_List" /> from sea_playdata 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sea_playdata
+    where  v_id = #{0}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sea_playdata
+    where v_id = #{0}
+  </delete>
+
+  <insert id="insert" parameterType="com.v5ent.movie.entity.Playdata" >
+    INSERT INTO sea_playdata
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != vId ">
+					v_id,
+				</if>
+			 	<if test=" null != tid ">
+					tid,
+				</if>
+			 	<if test=" null != body and ''!= body  ">
+					body,
+				</if>
+			 	<if test=" null != body1 and ''!= body1  ">
+					body1,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != vId ">
+					 	#{vId},
+				</if>
+			 	<if test=" null != tid ">
+					 	#{tid},
+				</if>
+			 	<if test=" null != body and ''!= body  ">
+					 	#{body},
+				</if>
+			 	<if test=" null != body1 and ''!= body1  ">
+					 	#{body1},
+				</if>
+		</trim>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.v5ent.movie.entity.Playdata" useGeneratedKeys="true" keyProperty="vId" >
+		INSERT INTO sea_playdata
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != vId ">
+					v_id,
+				</if>
+			 	<if test=" null != tid ">
+					tid,
+				</if>
+			 	<if test=" null != body and ''!= body  ">
+					body,
+				</if>
+			 	<if test=" null != body1 and ''!= body1  ">
+					body1,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != vId ">
+					 	#{vId},
+				</if>
+			 	<if test=" null != tid ">
+					 	#{tid},
+				</if>
+			 	<if test=" null != body and ''!= body  ">
+					 	#{body},
+				</if>
+			 	<if test=" null != body1 and ''!= body1  ">
+					 	#{body1},
+				</if>
+		</trim>
+	</insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.v5ent.movie.entity.Playdata" >
+  		UPDATE sea_playdata
+		<set>
+			<trim suffixOverrides=",">
+					<if test=" null != tid ">
+						tid = #{tid},
+					</if>
+					<if test=" null != body and ''!= body  ">
+						body = #{body},
+					</if>
+					<if test=" null != body1 and ''!= body1  ">
+						body1 = #{body1},
+					</if>
+			</trim>
+		</set>
+		<where>
+			 v_id = #{vId}
+		</where>
+	</update>
+  
+	<update id="updateByPrimaryKey" parameterType="com.v5ent.movie.entity.Playdata" >
+	    UPDATE sea_playdata
+	   <set>
+			<trim suffixOverrides=",">
+					<if test=" null != tid ">
+						tid = #{tid},
+					</if>
+					<if test=" null != body and ''!= body  ">
+						body = #{body},
+					</if>
+					<if test=" null != body1 and ''!= body1  ">
+						body1 = #{body1},
+					</if>
+			</trim>
+		</set>
+		<where>
+			v_id = #{0}
+		</where>
+	  </update>
+
+</mapper>

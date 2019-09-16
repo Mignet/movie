@@ -1,0 +1,1319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v5ent.movie.mapper.DataMapper">
+	<!-- Result Map-->
+	<resultMap  type="com.v5ent.movie.entity.Data" id="BaseResultMap">
+		<result column="v_id" property="vId" jdbcType="INTEGER"/>
+		<result column="tid" property="tid" jdbcType="SMALLINT"/>
+		<result column="v_name" property="vName" jdbcType="CHAR"/>
+		<result column="v_state" property="vState" jdbcType="INTEGER"/>
+		<result column="v_pic" property="vPic" jdbcType="CHAR"/>
+		<result column="v_spic" property="vSpic" jdbcType="CHAR"/>
+		<result column="v_gpic" property="vGpic" jdbcType="CHAR"/>
+		<result column="v_hit" property="vHit" jdbcType="INTEGER"/>
+		<result column="v_money" property="vMoney" jdbcType="SMALLINT"/>
+		<result column="v_rank" property="vRank" jdbcType="SMALLINT"/>
+		<result column="v_digg" property="vDigg" jdbcType="SMALLINT"/>
+		<result column="v_tread" property="vTread" jdbcType="SMALLINT"/>
+		<result column="v_commend" property="vCommend" jdbcType="SMALLINT"/>
+		<result column="v_wrong" property="vWrong" jdbcType="SMALLINT"/>
+		<result column="v_ismake" property="vIsmake" jdbcType="SMALLINT"/>
+		<result column="v_actor" property="vActor" jdbcType="VARCHAR"/>
+		<result column="v_color" property="vColor" jdbcType="CHAR"/>
+		<result column="v_publishyear" property="vPublishyear" jdbcType="INTEGER"/>
+		<result column="v_publisharea" property="vPublisharea" jdbcType="CHAR"/>
+		<result column="v_addtime" property="vAddtime" jdbcType="INTEGER"/>
+		<result column="v_topic" property="vTopic" jdbcType="INTEGER"/>
+		<result column="v_note" property="vNote" jdbcType="CHAR"/>
+		<result column="v_tags" property="vTags" jdbcType="CHAR"/>
+		<result column="v_letter" property="vLetter" jdbcType="CHAR"/>
+		<result column="v_isunion" property="vIsunion" jdbcType="SMALLINT"/>
+		<result column="v_recycled" property="vRecycled" jdbcType="SMALLINT"/>
+		<result column="v_director" property="vDirector" jdbcType="VARCHAR"/>
+		<result column="v_enname" property="vEnname" jdbcType="VARCHAR"/>
+		<result column="v_lang" property="vLang" jdbcType="VARCHAR"/>
+		<result column="v_score" property="vScore" jdbcType="INTEGER"/>
+		<result column="v_scorenum" property="vScorenum" jdbcType="INTEGER"/>
+		<result column="v_extratype" property="vExtratype" jdbcType="LONGVARCHAR"/>
+		<result column="v_jq" property="vJq" jdbcType="LONGVARCHAR"/>
+		<result column="v_nickname" property="vNickname" jdbcType="CHAR"/>
+		<result column="v_reweek" property="vReweek" jdbcType="CHAR"/>
+		<result column="v_douban" property="vDouban" jdbcType="REAL"/>
+		<result column="v_mtime" property="vMtime" jdbcType="REAL"/>
+		<result column="v_imdb" property="vImdb" jdbcType="REAL"/>
+		<result column="v_tvs" property="vTvs" jdbcType="CHAR"/>
+		<result column="v_company" property="vCompany" jdbcType="CHAR"/>
+		<result column="v_dayhit" property="vDayhit" jdbcType="INTEGER"/>
+		<result column="v_weekhit" property="vWeekhit" jdbcType="INTEGER"/>
+		<result column="v_monthhit" property="vMonthhit" jdbcType="INTEGER"/>
+		<result column="v_daytime" property="vDaytime" jdbcType="INTEGER"/>
+		<result column="v_weektime" property="vWeektime" jdbcType="INTEGER"/>
+		<result column="v_monthtime" property="vMonthtime" jdbcType="INTEGER"/>
+		<result column="v_len" property="vLen" jdbcType="VARCHAR"/>
+		<result column="v_total" property="vTotal" jdbcType="VARCHAR"/>
+		<result column="v_ver" property="vVer" jdbcType="VARCHAR"/>
+		<result column="v_psd" property="vPsd" jdbcType="VARCHAR"/>
+		<result column="v_longtxt" property="vLongtxt" jdbcType="LONGVARCHAR"/>
+	</resultMap>
+	
+  <sql id="Base_Column_List">
+    <trim suffixOverrides=",">
+	    	v_id,
+	    	tid,
+	    	v_name,
+	    	v_state,
+	    	v_pic,
+	    	v_spic,
+	    	v_gpic,
+	    	v_hit,
+	    	v_money,
+	    	v_rank,
+	    	v_digg,
+	    	v_tread,
+	    	v_commend,
+	    	v_wrong,
+	    	v_ismake,
+	    	v_actor,
+	    	v_color,
+	    	v_publishyear,
+	    	v_publisharea,
+	    	v_addtime,
+	    	v_topic,
+	    	v_note,
+	    	v_tags,
+	    	v_letter,
+	    	v_isunion,
+	    	v_recycled,
+	    	v_director,
+	    	v_enname,
+	    	v_lang,
+	    	v_score,
+	    	v_scorenum,
+	    	v_extratype,
+	    	v_jq,
+	    	v_nickname,
+	    	v_reweek,
+	    	v_douban,
+	    	v_mtime,
+	    	v_imdb,
+	    	v_tvs,
+	    	v_company,
+	    	v_dayhit,
+	    	v_weekhit,
+	    	v_monthhit,
+	    	v_daytime,
+	    	v_weektime,
+	    	v_monthtime,
+	    	v_len,
+	    	v_total,
+	    	v_ver,
+	    	v_psd,
+	    	v_longtxt,
+    </trim>
+  </sql>
+  
+ <sql id="Base_Column_List_T">
+    <trim suffixOverrides=",">
+	    	t.v_id,
+	    	t.tid,
+	    	t.v_name,
+	    	t.v_state,
+	    	t.v_pic,
+	    	t.v_spic,
+	    	t.v_gpic,
+	    	t.v_hit,
+	    	t.v_money,
+	    	t.v_rank,
+	    	t.v_digg,
+	    	t.v_tread,
+	    	t.v_commend,
+	    	t.v_wrong,
+	    	t.v_ismake,
+	    	t.v_actor,
+	    	t.v_color,
+	    	t.v_publishyear,
+	    	t.v_publisharea,
+	    	t.v_addtime,
+	    	t.v_topic,
+	    	t.v_note,
+	    	t.v_tags,
+	    	t.v_letter,
+	    	t.v_isunion,
+	    	t.v_recycled,
+	    	t.v_director,
+	    	t.v_enname,
+	    	t.v_lang,
+	    	t.v_score,
+	    	t.v_scorenum,
+	    	t.v_extratype,
+	    	t.v_jq,
+	    	t.v_nickname,
+	    	t.v_reweek,
+	    	t.v_douban,
+	    	t.v_mtime,
+	    	t.v_imdb,
+	    	t.v_tvs,
+	    	t.v_company,
+	    	t.v_dayhit,
+	    	t.v_weekhit,
+	    	t.v_monthhit,
+	    	t.v_daytime,
+	    	t.v_weektime,
+	    	t.v_monthtime,
+	    	t.v_len,
+	    	t.v_total,
+	    	t.v_ver,
+	    	t.v_psd,
+	    	t.v_longtxt,
+    </trim>
+  </sql>  
+  
+  <sql id="Base_Condition">
+		<if test=" null != vId ">
+			and v_id = #{vId}
+		</if>
+		<if test=" null != tid ">
+			and tid = #{tid}
+		</if>
+		<if test=" null != vName and ''!= vName  ">
+			and v_name = #{vName}
+		</if>
+		<if test=" null != vState ">
+			and v_state = #{vState}
+		</if>
+		<if test=" null != vPic and ''!= vPic  ">
+			and v_pic = #{vPic}
+		</if>
+		<if test=" null != vSpic and ''!= vSpic  ">
+			and v_spic = #{vSpic}
+		</if>
+		<if test=" null != vGpic and ''!= vGpic  ">
+			and v_gpic = #{vGpic}
+		</if>
+		<if test=" null != vHit ">
+			and v_hit = #{vHit}
+		</if>
+		<if test=" null != vMoney ">
+			and v_money = #{vMoney}
+		</if>
+		<if test=" null != vRank ">
+			and v_rank = #{vRank}
+		</if>
+		<if test=" null != vDigg ">
+			and v_digg = #{vDigg}
+		</if>
+		<if test=" null != vTread ">
+			and v_tread = #{vTread}
+		</if>
+		<if test=" null != vCommend ">
+			and v_commend = #{vCommend}
+		</if>
+		<if test=" null != vWrong ">
+			and v_wrong = #{vWrong}
+		</if>
+		<if test=" null != vIsmake ">
+			and v_ismake = #{vIsmake}
+		</if>
+		<if test=" null != vActor and ''!= vActor  ">
+			and v_actor = #{vActor}
+		</if>
+		<if test=" null != vColor and ''!= vColor  ">
+			and v_color = #{vColor}
+		</if>
+		<if test=" null != vPublishyear ">
+			and v_publishyear = #{vPublishyear}
+		</if>
+		<if test=" null != vPublisharea and ''!= vPublisharea  ">
+			and v_publisharea = #{vPublisharea}
+		</if>
+		<if test=" null != vAddtime ">
+			and v_addtime = #{vAddtime}
+		</if>
+		<if test=" null != vTopic ">
+			and v_topic = #{vTopic}
+		</if>
+		<if test=" null != vNote and ''!= vNote  ">
+			and v_note = #{vNote}
+		</if>
+		<if test=" null != vTags and ''!= vTags  ">
+			and v_tags = #{vTags}
+		</if>
+		<if test=" null != vLetter and ''!= vLetter  ">
+			and v_letter = #{vLetter}
+		</if>
+		<if test=" null != vIsunion ">
+			and v_isunion = #{vIsunion}
+		</if>
+		<if test=" null != vRecycled ">
+			and v_recycled = #{vRecycled}
+		</if>
+		<if test=" null != vDirector and ''!= vDirector  ">
+			and v_director = #{vDirector}
+		</if>
+		<if test=" null != vEnname and ''!= vEnname  ">
+			and v_enname = #{vEnname}
+		</if>
+		<if test=" null != vLang and ''!= vLang  ">
+			and v_lang = #{vLang}
+		</if>
+		<if test=" null != vScore ">
+			and v_score = #{vScore}
+		</if>
+		<if test=" null != vScorenum ">
+			and v_scorenum = #{vScorenum}
+		</if>
+		<if test=" null != vExtratype and ''!= vExtratype  ">
+			and v_extratype = #{vExtratype}
+		</if>
+		<if test=" null != vJq and ''!= vJq  ">
+			and v_jq = #{vJq}
+		</if>
+		<if test=" null != vNickname and ''!= vNickname  ">
+			and v_nickname = #{vNickname}
+		</if>
+		<if test=" null != vReweek and ''!= vReweek  ">
+			and v_reweek = #{vReweek}
+		</if>
+		<if test=" null != vDouban ">
+			and v_douban = #{vDouban}
+		</if>
+		<if test=" null != vMtime ">
+			and v_mtime = #{vMtime}
+		</if>
+		<if test=" null != vImdb ">
+			and v_imdb = #{vImdb}
+		</if>
+		<if test=" null != vTvs and ''!= vTvs  ">
+			and v_tvs = #{vTvs}
+		</if>
+		<if test=" null != vCompany and ''!= vCompany  ">
+			and v_company = #{vCompany}
+		</if>
+		<if test=" null != vDayhit ">
+			and v_dayhit = #{vDayhit}
+		</if>
+		<if test=" null != vWeekhit ">
+			and v_weekhit = #{vWeekhit}
+		</if>
+		<if test=" null != vMonthhit ">
+			and v_monthhit = #{vMonthhit}
+		</if>
+		<if test=" null != vDaytime ">
+			and v_daytime = #{vDaytime}
+		</if>
+		<if test=" null != vWeektime ">
+			and v_weektime = #{vWeektime}
+		</if>
+		<if test=" null != vMonthtime ">
+			and v_monthtime = #{vMonthtime}
+		</if>
+		<if test=" null != vLen and ''!= vLen  ">
+			and v_len = #{vLen}
+		</if>
+		<if test=" null != vTotal and ''!= vTotal  ">
+			and v_total = #{vTotal}
+		</if>
+		<if test=" null != vVer and ''!= vVer  ">
+			and v_ver = #{vVer}
+		</if>
+		<if test=" null != vPsd and ''!= vPsd  ">
+			and v_psd = #{vPsd}
+		</if>
+		<if test=" null != vLongtxt and ''!= vLongtxt  ">
+			and v_longtxt = #{vLongtxt}
+		</if>
+  </sql>
+  
+  <select id="selectOneByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.movie.entity.Data">
+		select <include refid="Base_Column_List" /> from sea_data 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.movie.entity.Data">
+		select <include refid="Base_Column_List" /> from sea_data 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sea_data
+    where  v_id = #{0}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sea_data
+    where v_id = #{0}
+  </delete>
+
+  <insert id="insert" parameterType="com.v5ent.movie.entity.Data" >
+    INSERT INTO sea_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != vId ">
+					v_id,
+				</if>
+			 	<if test=" null != tid ">
+					tid,
+				</if>
+			 	<if test=" null != vName and ''!= vName  ">
+					v_name,
+				</if>
+			 	<if test=" null != vState ">
+					v_state,
+				</if>
+			 	<if test=" null != vPic and ''!= vPic  ">
+					v_pic,
+				</if>
+			 	<if test=" null != vSpic and ''!= vSpic  ">
+					v_spic,
+				</if>
+			 	<if test=" null != vGpic and ''!= vGpic  ">
+					v_gpic,
+				</if>
+			 	<if test=" null != vHit ">
+					v_hit,
+				</if>
+			 	<if test=" null != vMoney ">
+					v_money,
+				</if>
+			 	<if test=" null != vRank ">
+					v_rank,
+				</if>
+			 	<if test=" null != vDigg ">
+					v_digg,
+				</if>
+			 	<if test=" null != vTread ">
+					v_tread,
+				</if>
+			 	<if test=" null != vCommend ">
+					v_commend,
+				</if>
+			 	<if test=" null != vWrong ">
+					v_wrong,
+				</if>
+			 	<if test=" null != vIsmake ">
+					v_ismake,
+				</if>
+			 	<if test=" null != vActor and ''!= vActor  ">
+					v_actor,
+				</if>
+			 	<if test=" null != vColor and ''!= vColor  ">
+					v_color,
+				</if>
+			 	<if test=" null != vPublishyear ">
+					v_publishyear,
+				</if>
+			 	<if test=" null != vPublisharea and ''!= vPublisharea  ">
+					v_publisharea,
+				</if>
+			 	<if test=" null != vAddtime ">
+					v_addtime,
+				</if>
+			 	<if test=" null != vTopic ">
+					v_topic,
+				</if>
+			 	<if test=" null != vNote and ''!= vNote  ">
+					v_note,
+				</if>
+			 	<if test=" null != vTags and ''!= vTags  ">
+					v_tags,
+				</if>
+			 	<if test=" null != vLetter and ''!= vLetter  ">
+					v_letter,
+				</if>
+			 	<if test=" null != vIsunion ">
+					v_isunion,
+				</if>
+			 	<if test=" null != vRecycled ">
+					v_recycled,
+				</if>
+			 	<if test=" null != vDirector and ''!= vDirector  ">
+					v_director,
+				</if>
+			 	<if test=" null != vEnname and ''!= vEnname  ">
+					v_enname,
+				</if>
+			 	<if test=" null != vLang and ''!= vLang  ">
+					v_lang,
+				</if>
+			 	<if test=" null != vScore ">
+					v_score,
+				</if>
+			 	<if test=" null != vScorenum ">
+					v_scorenum,
+				</if>
+			 	<if test=" null != vExtratype and ''!= vExtratype  ">
+					v_extratype,
+				</if>
+			 	<if test=" null != vJq and ''!= vJq  ">
+					v_jq,
+				</if>
+			 	<if test=" null != vNickname and ''!= vNickname  ">
+					v_nickname,
+				</if>
+			 	<if test=" null != vReweek and ''!= vReweek  ">
+					v_reweek,
+				</if>
+			 	<if test=" null != vDouban ">
+					v_douban,
+				</if>
+			 	<if test=" null != vMtime ">
+					v_mtime,
+				</if>
+			 	<if test=" null != vImdb ">
+					v_imdb,
+				</if>
+			 	<if test=" null != vTvs and ''!= vTvs  ">
+					v_tvs,
+				</if>
+			 	<if test=" null != vCompany and ''!= vCompany  ">
+					v_company,
+				</if>
+			 	<if test=" null != vDayhit ">
+					v_dayhit,
+				</if>
+			 	<if test=" null != vWeekhit ">
+					v_weekhit,
+				</if>
+			 	<if test=" null != vMonthhit ">
+					v_monthhit,
+				</if>
+			 	<if test=" null != vDaytime ">
+					v_daytime,
+				</if>
+			 	<if test=" null != vWeektime ">
+					v_weektime,
+				</if>
+			 	<if test=" null != vMonthtime ">
+					v_monthtime,
+				</if>
+			 	<if test=" null != vLen and ''!= vLen  ">
+					v_len,
+				</if>
+			 	<if test=" null != vTotal and ''!= vTotal  ">
+					v_total,
+				</if>
+			 	<if test=" null != vVer and ''!= vVer  ">
+					v_ver,
+				</if>
+			 	<if test=" null != vPsd and ''!= vPsd  ">
+					v_psd,
+				</if>
+			 	<if test=" null != vLongtxt and ''!= vLongtxt  ">
+					v_longtxt,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != vId ">
+					 	#{vId},
+				</if>
+			 	<if test=" null != tid ">
+					 	#{tid},
+				</if>
+			 	<if test=" null != vName and ''!= vName  ">
+					 	#{vName},
+				</if>
+			 	<if test=" null != vState ">
+					 	#{vState},
+				</if>
+			 	<if test=" null != vPic and ''!= vPic  ">
+					 	#{vPic},
+				</if>
+			 	<if test=" null != vSpic and ''!= vSpic  ">
+					 	#{vSpic},
+				</if>
+			 	<if test=" null != vGpic and ''!= vGpic  ">
+					 	#{vGpic},
+				</if>
+			 	<if test=" null != vHit ">
+					 	#{vHit},
+				</if>
+			 	<if test=" null != vMoney ">
+					 	#{vMoney},
+				</if>
+			 	<if test=" null != vRank ">
+					 	#{vRank},
+				</if>
+			 	<if test=" null != vDigg ">
+					 	#{vDigg},
+				</if>
+			 	<if test=" null != vTread ">
+					 	#{vTread},
+				</if>
+			 	<if test=" null != vCommend ">
+					 	#{vCommend},
+				</if>
+			 	<if test=" null != vWrong ">
+					 	#{vWrong},
+				</if>
+			 	<if test=" null != vIsmake ">
+					 	#{vIsmake},
+				</if>
+			 	<if test=" null != vActor and ''!= vActor  ">
+					 	#{vActor},
+				</if>
+			 	<if test=" null != vColor and ''!= vColor  ">
+					 	#{vColor},
+				</if>
+			 	<if test=" null != vPublishyear ">
+					 	#{vPublishyear},
+				</if>
+			 	<if test=" null != vPublisharea and ''!= vPublisharea  ">
+					 	#{vPublisharea},
+				</if>
+			 	<if test=" null != vAddtime ">
+					 	#{vAddtime},
+				</if>
+			 	<if test=" null != vTopic ">
+					 	#{vTopic},
+				</if>
+			 	<if test=" null != vNote and ''!= vNote  ">
+					 	#{vNote},
+				</if>
+			 	<if test=" null != vTags and ''!= vTags  ">
+					 	#{vTags},
+				</if>
+			 	<if test=" null != vLetter and ''!= vLetter  ">
+					 	#{vLetter},
+				</if>
+			 	<if test=" null != vIsunion ">
+					 	#{vIsunion},
+				</if>
+			 	<if test=" null != vRecycled ">
+					 	#{vRecycled},
+				</if>
+			 	<if test=" null != vDirector and ''!= vDirector  ">
+					 	#{vDirector},
+				</if>
+			 	<if test=" null != vEnname and ''!= vEnname  ">
+					 	#{vEnname},
+				</if>
+			 	<if test=" null != vLang and ''!= vLang  ">
+					 	#{vLang},
+				</if>
+			 	<if test=" null != vScore ">
+					 	#{vScore},
+				</if>
+			 	<if test=" null != vScorenum ">
+					 	#{vScorenum},
+				</if>
+			 	<if test=" null != vExtratype and ''!= vExtratype  ">
+					 	#{vExtratype},
+				</if>
+			 	<if test=" null != vJq and ''!= vJq  ">
+					 	#{vJq},
+				</if>
+			 	<if test=" null != vNickname and ''!= vNickname  ">
+					 	#{vNickname},
+				</if>
+			 	<if test=" null != vReweek and ''!= vReweek  ">
+					 	#{vReweek},
+				</if>
+			 	<if test=" null != vDouban ">
+					 	#{vDouban},
+				</if>
+			 	<if test=" null != vMtime ">
+					 	#{vMtime},
+				</if>
+			 	<if test=" null != vImdb ">
+					 	#{vImdb},
+				</if>
+			 	<if test=" null != vTvs and ''!= vTvs  ">
+					 	#{vTvs},
+				</if>
+			 	<if test=" null != vCompany and ''!= vCompany  ">
+					 	#{vCompany},
+				</if>
+			 	<if test=" null != vDayhit ">
+					 	#{vDayhit},
+				</if>
+			 	<if test=" null != vWeekhit ">
+					 	#{vWeekhit},
+				</if>
+			 	<if test=" null != vMonthhit ">
+					 	#{vMonthhit},
+				</if>
+			 	<if test=" null != vDaytime ">
+					 	#{vDaytime},
+				</if>
+			 	<if test=" null != vWeektime ">
+					 	#{vWeektime},
+				</if>
+			 	<if test=" null != vMonthtime ">
+					 	#{vMonthtime},
+				</if>
+			 	<if test=" null != vLen and ''!= vLen  ">
+					 	#{vLen},
+				</if>
+			 	<if test=" null != vTotal and ''!= vTotal  ">
+					 	#{vTotal},
+				</if>
+			 	<if test=" null != vVer and ''!= vVer  ">
+					 	#{vVer},
+				</if>
+			 	<if test=" null != vPsd and ''!= vPsd  ">
+					 	#{vPsd},
+				</if>
+			 	<if test=" null != vLongtxt and ''!= vLongtxt  ">
+					 	#{vLongtxt},
+				</if>
+		</trim>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.v5ent.movie.entity.Data" useGeneratedKeys="true" keyProperty="vId" >
+		INSERT INTO sea_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != vId ">
+					v_id,
+				</if>
+			 	<if test=" null != tid ">
+					tid,
+				</if>
+			 	<if test=" null != vName and ''!= vName  ">
+					v_name,
+				</if>
+			 	<if test=" null != vState ">
+					v_state,
+				</if>
+			 	<if test=" null != vPic and ''!= vPic  ">
+					v_pic,
+				</if>
+			 	<if test=" null != vSpic and ''!= vSpic  ">
+					v_spic,
+				</if>
+			 	<if test=" null != vGpic and ''!= vGpic  ">
+					v_gpic,
+				</if>
+			 	<if test=" null != vHit ">
+					v_hit,
+				</if>
+			 	<if test=" null != vMoney ">
+					v_money,
+				</if>
+			 	<if test=" null != vRank ">
+					v_rank,
+				</if>
+			 	<if test=" null != vDigg ">
+					v_digg,
+				</if>
+			 	<if test=" null != vTread ">
+					v_tread,
+				</if>
+			 	<if test=" null != vCommend ">
+					v_commend,
+				</if>
+			 	<if test=" null != vWrong ">
+					v_wrong,
+				</if>
+			 	<if test=" null != vIsmake ">
+					v_ismake,
+				</if>
+			 	<if test=" null != vActor and ''!= vActor  ">
+					v_actor,
+				</if>
+			 	<if test=" null != vColor and ''!= vColor  ">
+					v_color,
+				</if>
+			 	<if test=" null != vPublishyear ">
+					v_publishyear,
+				</if>
+			 	<if test=" null != vPublisharea and ''!= vPublisharea  ">
+					v_publisharea,
+				</if>
+			 	<if test=" null != vAddtime ">
+					v_addtime,
+				</if>
+			 	<if test=" null != vTopic ">
+					v_topic,
+				</if>
+			 	<if test=" null != vNote and ''!= vNote  ">
+					v_note,
+				</if>
+			 	<if test=" null != vTags and ''!= vTags  ">
+					v_tags,
+				</if>
+			 	<if test=" null != vLetter and ''!= vLetter  ">
+					v_letter,
+				</if>
+			 	<if test=" null != vIsunion ">
+					v_isunion,
+				</if>
+			 	<if test=" null != vRecycled ">
+					v_recycled,
+				</if>
+			 	<if test=" null != vDirector and ''!= vDirector  ">
+					v_director,
+				</if>
+			 	<if test=" null != vEnname and ''!= vEnname  ">
+					v_enname,
+				</if>
+			 	<if test=" null != vLang and ''!= vLang  ">
+					v_lang,
+				</if>
+			 	<if test=" null != vScore ">
+					v_score,
+				</if>
+			 	<if test=" null != vScorenum ">
+					v_scorenum,
+				</if>
+			 	<if test=" null != vExtratype and ''!= vExtratype  ">
+					v_extratype,
+				</if>
+			 	<if test=" null != vJq and ''!= vJq  ">
+					v_jq,
+				</if>
+			 	<if test=" null != vNickname and ''!= vNickname  ">
+					v_nickname,
+				</if>
+			 	<if test=" null != vReweek and ''!= vReweek  ">
+					v_reweek,
+				</if>
+			 	<if test=" null != vDouban ">
+					v_douban,
+				</if>
+			 	<if test=" null != vMtime ">
+					v_mtime,
+				</if>
+			 	<if test=" null != vImdb ">
+					v_imdb,
+				</if>
+			 	<if test=" null != vTvs and ''!= vTvs  ">
+					v_tvs,
+				</if>
+			 	<if test=" null != vCompany and ''!= vCompany  ">
+					v_company,
+				</if>
+			 	<if test=" null != vDayhit ">
+					v_dayhit,
+				</if>
+			 	<if test=" null != vWeekhit ">
+					v_weekhit,
+				</if>
+			 	<if test=" null != vMonthhit ">
+					v_monthhit,
+				</if>
+			 	<if test=" null != vDaytime ">
+					v_daytime,
+				</if>
+			 	<if test=" null != vWeektime ">
+					v_weektime,
+				</if>
+			 	<if test=" null != vMonthtime ">
+					v_monthtime,
+				</if>
+			 	<if test=" null != vLen and ''!= vLen  ">
+					v_len,
+				</if>
+			 	<if test=" null != vTotal and ''!= vTotal  ">
+					v_total,
+				</if>
+			 	<if test=" null != vVer and ''!= vVer  ">
+					v_ver,
+				</if>
+			 	<if test=" null != vPsd and ''!= vPsd  ">
+					v_psd,
+				</if>
+			 	<if test=" null != vLongtxt and ''!= vLongtxt  ">
+					v_longtxt,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != vId ">
+					 	#{vId},
+				</if>
+			 	<if test=" null != tid ">
+					 	#{tid},
+				</if>
+			 	<if test=" null != vName and ''!= vName  ">
+					 	#{vName},
+				</if>
+			 	<if test=" null != vState ">
+					 	#{vState},
+				</if>
+			 	<if test=" null != vPic and ''!= vPic  ">
+					 	#{vPic},
+				</if>
+			 	<if test=" null != vSpic and ''!= vSpic  ">
+					 	#{vSpic},
+				</if>
+			 	<if test=" null != vGpic and ''!= vGpic  ">
+					 	#{vGpic},
+				</if>
+			 	<if test=" null != vHit ">
+					 	#{vHit},
+				</if>
+			 	<if test=" null != vMoney ">
+					 	#{vMoney},
+				</if>
+			 	<if test=" null != vRank ">
+					 	#{vRank},
+				</if>
+			 	<if test=" null != vDigg ">
+					 	#{vDigg},
+				</if>
+			 	<if test=" null != vTread ">
+					 	#{vTread},
+				</if>
+			 	<if test=" null != vCommend ">
+					 	#{vCommend},
+				</if>
+			 	<if test=" null != vWrong ">
+					 	#{vWrong},
+				</if>
+			 	<if test=" null != vIsmake ">
+					 	#{vIsmake},
+				</if>
+			 	<if test=" null != vActor and ''!= vActor  ">
+					 	#{vActor},
+				</if>
+			 	<if test=" null != vColor and ''!= vColor  ">
+					 	#{vColor},
+				</if>
+			 	<if test=" null != vPublishyear ">
+					 	#{vPublishyear},
+				</if>
+			 	<if test=" null != vPublisharea and ''!= vPublisharea  ">
+					 	#{vPublisharea},
+				</if>
+			 	<if test=" null != vAddtime ">
+					 	#{vAddtime},
+				</if>
+			 	<if test=" null != vTopic ">
+					 	#{vTopic},
+				</if>
+			 	<if test=" null != vNote and ''!= vNote  ">
+					 	#{vNote},
+				</if>
+			 	<if test=" null != vTags and ''!= vTags  ">
+					 	#{vTags},
+				</if>
+			 	<if test=" null != vLetter and ''!= vLetter  ">
+					 	#{vLetter},
+				</if>
+			 	<if test=" null != vIsunion ">
+					 	#{vIsunion},
+				</if>
+			 	<if test=" null != vRecycled ">
+					 	#{vRecycled},
+				</if>
+			 	<if test=" null != vDirector and ''!= vDirector  ">
+					 	#{vDirector},
+				</if>
+			 	<if test=" null != vEnname and ''!= vEnname  ">
+					 	#{vEnname},
+				</if>
+			 	<if test=" null != vLang and ''!= vLang  ">
+					 	#{vLang},
+				</if>
+			 	<if test=" null != vScore ">
+					 	#{vScore},
+				</if>
+			 	<if test=" null != vScorenum ">
+					 	#{vScorenum},
+				</if>
+			 	<if test=" null != vExtratype and ''!= vExtratype  ">
+					 	#{vExtratype},
+				</if>
+			 	<if test=" null != vJq and ''!= vJq  ">
+					 	#{vJq},
+				</if>
+			 	<if test=" null != vNickname and ''!= vNickname  ">
+					 	#{vNickname},
+				</if>
+			 	<if test=" null != vReweek and ''!= vReweek  ">
+					 	#{vReweek},
+				</if>
+			 	<if test=" null != vDouban ">
+					 	#{vDouban},
+				</if>
+			 	<if test=" null != vMtime ">
+					 	#{vMtime},
+				</if>
+			 	<if test=" null != vImdb ">
+					 	#{vImdb},
+				</if>
+			 	<if test=" null != vTvs and ''!= vTvs  ">
+					 	#{vTvs},
+				</if>
+			 	<if test=" null != vCompany and ''!= vCompany  ">
+					 	#{vCompany},
+				</if>
+			 	<if test=" null != vDayhit ">
+					 	#{vDayhit},
+				</if>
+			 	<if test=" null != vWeekhit ">
+					 	#{vWeekhit},
+				</if>
+			 	<if test=" null != vMonthhit ">
+					 	#{vMonthhit},
+				</if>
+			 	<if test=" null != vDaytime ">
+					 	#{vDaytime},
+				</if>
+			 	<if test=" null != vWeektime ">
+					 	#{vWeektime},
+				</if>
+			 	<if test=" null != vMonthtime ">
+					 	#{vMonthtime},
+				</if>
+			 	<if test=" null != vLen and ''!= vLen  ">
+					 	#{vLen},
+				</if>
+			 	<if test=" null != vTotal and ''!= vTotal  ">
+					 	#{vTotal},
+				</if>
+			 	<if test=" null != vVer and ''!= vVer  ">
+					 	#{vVer},
+				</if>
+			 	<if test=" null != vPsd and ''!= vPsd  ">
+					 	#{vPsd},
+				</if>
+			 	<if test=" null != vLongtxt and ''!= vLongtxt  ">
+					 	#{vLongtxt},
+				</if>
+		</trim>
+	</insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.v5ent.movie.entity.Data" >
+  		UPDATE sea_data
+		<set>
+			<trim suffixOverrides=",">
+					<if test=" null != tid ">
+						tid = #{tid},
+					</if>
+					<if test=" null != vName and ''!= vName  ">
+						v_name = #{vName},
+					</if>
+					<if test=" null != vState ">
+						v_state = #{vState},
+					</if>
+					<if test=" null != vPic and ''!= vPic  ">
+						v_pic = #{vPic},
+					</if>
+					<if test=" null != vSpic and ''!= vSpic  ">
+						v_spic = #{vSpic},
+					</if>
+					<if test=" null != vGpic and ''!= vGpic  ">
+						v_gpic = #{vGpic},
+					</if>
+					<if test=" null != vHit ">
+						v_hit = #{vHit},
+					</if>
+					<if test=" null != vMoney ">
+						v_money = #{vMoney},
+					</if>
+					<if test=" null != vRank ">
+						v_rank = #{vRank},
+					</if>
+					<if test=" null != vDigg ">
+						v_digg = #{vDigg},
+					</if>
+					<if test=" null != vTread ">
+						v_tread = #{vTread},
+					</if>
+					<if test=" null != vCommend ">
+						v_commend = #{vCommend},
+					</if>
+					<if test=" null != vWrong ">
+						v_wrong = #{vWrong},
+					</if>
+					<if test=" null != vIsmake ">
+						v_ismake = #{vIsmake},
+					</if>
+					<if test=" null != vActor and ''!= vActor  ">
+						v_actor = #{vActor},
+					</if>
+					<if test=" null != vColor and ''!= vColor  ">
+						v_color = #{vColor},
+					</if>
+					<if test=" null != vPublishyear ">
+						v_publishyear = #{vPublishyear},
+					</if>
+					<if test=" null != vPublisharea and ''!= vPublisharea  ">
+						v_publisharea = #{vPublisharea},
+					</if>
+					<if test=" null != vAddtime ">
+						v_addtime = #{vAddtime},
+					</if>
+					<if test=" null != vTopic ">
+						v_topic = #{vTopic},
+					</if>
+					<if test=" null != vNote and ''!= vNote  ">
+						v_note = #{vNote},
+					</if>
+					<if test=" null != vTags and ''!= vTags  ">
+						v_tags = #{vTags},
+					</if>
+					<if test=" null != vLetter and ''!= vLetter  ">
+						v_letter = #{vLetter},
+					</if>
+					<if test=" null != vIsunion ">
+						v_isunion = #{vIsunion},
+					</if>
+					<if test=" null != vRecycled ">
+						v_recycled = #{vRecycled},
+					</if>
+					<if test=" null != vDirector and ''!= vDirector  ">
+						v_director = #{vDirector},
+					</if>
+					<if test=" null != vEnname and ''!= vEnname  ">
+						v_enname = #{vEnname},
+					</if>
+					<if test=" null != vLang and ''!= vLang  ">
+						v_lang = #{vLang},
+					</if>
+					<if test=" null != vScore ">
+						v_score = #{vScore},
+					</if>
+					<if test=" null != vScorenum ">
+						v_scorenum = #{vScorenum},
+					</if>
+					<if test=" null != vExtratype and ''!= vExtratype  ">
+						v_extratype = #{vExtratype},
+					</if>
+					<if test=" null != vJq and ''!= vJq  ">
+						v_jq = #{vJq},
+					</if>
+					<if test=" null != vNickname and ''!= vNickname  ">
+						v_nickname = #{vNickname},
+					</if>
+					<if test=" null != vReweek and ''!= vReweek  ">
+						v_reweek = #{vReweek},
+					</if>
+					<if test=" null != vDouban ">
+						v_douban = #{vDouban},
+					</if>
+					<if test=" null != vMtime ">
+						v_mtime = #{vMtime},
+					</if>
+					<if test=" null != vImdb ">
+						v_imdb = #{vImdb},
+					</if>
+					<if test=" null != vTvs and ''!= vTvs  ">
+						v_tvs = #{vTvs},
+					</if>
+					<if test=" null != vCompany and ''!= vCompany  ">
+						v_company = #{vCompany},
+					</if>
+					<if test=" null != vDayhit ">
+						v_dayhit = #{vDayhit},
+					</if>
+					<if test=" null != vWeekhit ">
+						v_weekhit = #{vWeekhit},
+					</if>
+					<if test=" null != vMonthhit ">
+						v_monthhit = #{vMonthhit},
+					</if>
+					<if test=" null != vDaytime ">
+						v_daytime = #{vDaytime},
+					</if>
+					<if test=" null != vWeektime ">
+						v_weektime = #{vWeektime},
+					</if>
+					<if test=" null != vMonthtime ">
+						v_monthtime = #{vMonthtime},
+					</if>
+					<if test=" null != vLen and ''!= vLen  ">
+						v_len = #{vLen},
+					</if>
+					<if test=" null != vTotal and ''!= vTotal  ">
+						v_total = #{vTotal},
+					</if>
+					<if test=" null != vVer and ''!= vVer  ">
+						v_ver = #{vVer},
+					</if>
+					<if test=" null != vPsd and ''!= vPsd  ">
+						v_psd = #{vPsd},
+					</if>
+					<if test=" null != vLongtxt and ''!= vLongtxt  ">
+						v_longtxt = #{vLongtxt},
+					</if>
+			</trim>
+		</set>
+		<where>
+			 v_id = #{vId}
+		</where>
+	</update>
+  
+	<update id="updateByPrimaryKey" parameterType="com.v5ent.movie.entity.Data" >
+	    UPDATE sea_data
+	   <set>
+			<trim suffixOverrides=",">
+					<if test=" null != tid ">
+						tid = #{tid},
+					</if>
+					<if test=" null != vName and ''!= vName  ">
+						v_name = #{vName},
+					</if>
+					<if test=" null != vState ">
+						v_state = #{vState},
+					</if>
+					<if test=" null != vPic and ''!= vPic  ">
+						v_pic = #{vPic},
+					</if>
+					<if test=" null != vSpic and ''!= vSpic  ">
+						v_spic = #{vSpic},
+					</if>
+					<if test=" null != vGpic and ''!= vGpic  ">
+						v_gpic = #{vGpic},
+					</if>
+					<if test=" null != vHit ">
+						v_hit = #{vHit},
+					</if>
+					<if test=" null != vMoney ">
+						v_money = #{vMoney},
+					</if>
+					<if test=" null != vRank ">
+						v_rank = #{vRank},
+					</if>
+					<if test=" null != vDigg ">
+						v_digg = #{vDigg},
+					</if>
+					<if test=" null != vTread ">
+						v_tread = #{vTread},
+					</if>
+					<if test=" null != vCommend ">
+						v_commend = #{vCommend},
+					</if>
+					<if test=" null != vWrong ">
+						v_wrong = #{vWrong},
+					</if>
+					<if test=" null != vIsmake ">
+						v_ismake = #{vIsmake},
+					</if>
+					<if test=" null != vActor and ''!= vActor  ">
+						v_actor = #{vActor},
+					</if>
+					<if test=" null != vColor and ''!= vColor  ">
+						v_color = #{vColor},
+					</if>
+					<if test=" null != vPublishyear ">
+						v_publishyear = #{vPublishyear},
+					</if>
+					<if test=" null != vPublisharea and ''!= vPublisharea  ">
+						v_publisharea = #{vPublisharea},
+					</if>
+					<if test=" null != vAddtime ">
+						v_addtime = #{vAddtime},
+					</if>
+					<if test=" null != vTopic ">
+						v_topic = #{vTopic},
+					</if>
+					<if test=" null != vNote and ''!= vNote  ">
+						v_note = #{vNote},
+					</if>
+					<if test=" null != vTags and ''!= vTags  ">
+						v_tags = #{vTags},
+					</if>
+					<if test=" null != vLetter and ''!= vLetter  ">
+						v_letter = #{vLetter},
+					</if>
+					<if test=" null != vIsunion ">
+						v_isunion = #{vIsunion},
+					</if>
+					<if test=" null != vRecycled ">
+						v_recycled = #{vRecycled},
+					</if>
+					<if test=" null != vDirector and ''!= vDirector  ">
+						v_director = #{vDirector},
+					</if>
+					<if test=" null != vEnname and ''!= vEnname  ">
+						v_enname = #{vEnname},
+					</if>
+					<if test=" null != vLang and ''!= vLang  ">
+						v_lang = #{vLang},
+					</if>
+					<if test=" null != vScore ">
+						v_score = #{vScore},
+					</if>
+					<if test=" null != vScorenum ">
+						v_scorenum = #{vScorenum},
+					</if>
+					<if test=" null != vExtratype and ''!= vExtratype  ">
+						v_extratype = #{vExtratype},
+					</if>
+					<if test=" null != vJq and ''!= vJq  ">
+						v_jq = #{vJq},
+					</if>
+					<if test=" null != vNickname and ''!= vNickname  ">
+						v_nickname = #{vNickname},
+					</if>
+					<if test=" null != vReweek and ''!= vReweek  ">
+						v_reweek = #{vReweek},
+					</if>
+					<if test=" null != vDouban ">
+						v_douban = #{vDouban},
+					</if>
+					<if test=" null != vMtime ">
+						v_mtime = #{vMtime},
+					</if>
+					<if test=" null != vImdb ">
+						v_imdb = #{vImdb},
+					</if>
+					<if test=" null != vTvs and ''!= vTvs  ">
+						v_tvs = #{vTvs},
+					</if>
+					<if test=" null != vCompany and ''!= vCompany  ">
+						v_company = #{vCompany},
+					</if>
+					<if test=" null != vDayhit ">
+						v_dayhit = #{vDayhit},
+					</if>
+					<if test=" null != vWeekhit ">
+						v_weekhit = #{vWeekhit},
+					</if>
+					<if test=" null != vMonthhit ">
+						v_monthhit = #{vMonthhit},
+					</if>
+					<if test=" null != vDaytime ">
+						v_daytime = #{vDaytime},
+					</if>
+					<if test=" null != vWeektime ">
+						v_weektime = #{vWeektime},
+					</if>
+					<if test=" null != vMonthtime ">
+						v_monthtime = #{vMonthtime},
+					</if>
+					<if test=" null != vLen and ''!= vLen  ">
+						v_len = #{vLen},
+					</if>
+					<if test=" null != vTotal and ''!= vTotal  ">
+						v_total = #{vTotal},
+					</if>
+					<if test=" null != vVer and ''!= vVer  ">
+						v_ver = #{vVer},
+					</if>
+					<if test=" null != vPsd and ''!= vPsd  ">
+						v_psd = #{vPsd},
+					</if>
+					<if test=" null != vLongtxt and ''!= vLongtxt  ">
+						v_longtxt = #{vLongtxt},
+					</if>
+			</trim>
+		</set>
+		<where>
+			v_id = #{0}
+		</where>
+	  </update>
+
+	<!-- 查询 -->
+    <select id="search" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sea_data
+        <where> 
+                v_name LIKE CONCAT('%','${keywords}','%' )  
+        </where>
+    </select>
+    
+	<!-- 查询 -->
+    <select id="top9" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sea_data
+        <where> 
+         tid in(select tid from sea_type where upid=#{tid}) ORDER BY v_hit desc limit 9
+        </where>
+    </select>
+
+</mapper>

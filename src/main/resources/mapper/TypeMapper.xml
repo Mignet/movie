@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v5ent.movie.mapper.TypeMapper">
+	<!-- Result Map-->
+	<resultMap  type="com.v5ent.movie.entity.Type" id="BaseResultMap">
+		<result column="tid" property="tid" jdbcType="SMALLINT"/>
+		<result column="upid" property="upid" jdbcType="TINYINT"/>
+		<result column="tname" property="tname" jdbcType="CHAR"/>
+		<result column="tenname" property="tenname" jdbcType="CHAR"/>
+		<result column="torder" property="torder" jdbcType="INTEGER"/>
+		<result column="templist" property="templist" jdbcType="CHAR"/>
+		<result column="templist_1" property="templist1" jdbcType="CHAR"/>
+		<result column="templist_2" property="templist2" jdbcType="CHAR"/>
+		<result column="title" property="title" jdbcType="CHAR"/>
+		<result column="keyword" property="keyword" jdbcType="CHAR"/>
+		<result column="description" property="description" jdbcType="CHAR"/>
+		<result column="ishidden" property="ishidden" jdbcType="SMALLINT"/>
+		<result column="unionid" property="unionid" jdbcType="LONGVARCHAR"/>
+		<result column="tptype" property="tptype" jdbcType="SMALLINT"/>
+	</resultMap>
+	
+  <sql id="Base_Column_List">
+    <trim suffixOverrides=",">
+	    	tid,
+	    	upid,
+	    	tname,
+	    	tenname,
+	    	torder,
+	    	templist,
+	    	templist_1,
+	    	templist_2,
+	    	title,
+	    	keyword,
+	    	description,
+	    	ishidden,
+	    	unionid,
+	    	tptype,
+    </trim>
+  </sql>
+  
+ <sql id="Base_Column_List_T">
+    <trim suffixOverrides=",">
+	    	t.tid,
+	    	t.upid,
+	    	t.tname,
+	    	t.tenname,
+	    	t.torder,
+	    	t.templist,
+	    	t.templist_1,
+	    	t.templist_2,
+	    	t.title,
+	    	t.keyword,
+	    	t.description,
+	    	t.ishidden,
+	    	t.unionid,
+	    	t.tptype,
+    </trim>
+  </sql>  
+  
+  <sql id="Base_Condition">
+		<if test=" null != tid ">
+			and tid = #{tid}
+		</if>
+		<if test=" null != upid ">
+			and upid = #{upid}
+		</if>
+		<if test=" null != tname and ''!= tname  ">
+			and tname = #{tname}
+		</if>
+		<if test=" null != tenname and ''!= tenname  ">
+			and tenname = #{tenname}
+		</if>
+		<if test=" null != torder ">
+			and torder = #{torder}
+		</if>
+		<if test=" null != templist and ''!= templist  ">
+			and templist = #{templist}
+		</if>
+		<if test=" null != templist1 and ''!= templist1  ">
+			and templist_1 = #{templist1}
+		</if>
+		<if test=" null != templist2 and ''!= templist2  ">
+			and templist_2 = #{templist2}
+		</if>
+		<if test=" null != title and ''!= title  ">
+			and title = #{title}
+		</if>
+		<if test=" null != keyword and ''!= keyword  ">
+			and keyword = #{keyword}
+		</if>
+		<if test=" null != description and ''!= description  ">
+			and description = #{description}
+		</if>
+		<if test=" null != ishidden ">
+			and ishidden = #{ishidden}
+		</if>
+		<if test=" null != unionid and ''!= unionid  ">
+			and unionid = #{unionid}
+		</if>
+		<if test=" null != tptype ">
+			and tptype = #{tptype}
+		</if>
+  </sql>
+  
+  <select id="selectOneByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.movie.entity.Type">
+		select <include refid="Base_Column_List" /> from sea_type 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.movie.entity.Type">
+		select <include refid="Base_Column_List" /> from sea_type 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sea_type
+    where  tid = #{0}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sea_type
+    where tid = #{0}
+  </delete>
+
+  <insert id="insert" parameterType="com.v5ent.movie.entity.Type" >
+    INSERT INTO sea_type
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != tid ">
+					tid,
+				</if>
+			 	<if test=" null != upid ">
+					upid,
+				</if>
+			 	<if test=" null != tname and ''!= tname  ">
+					tname,
+				</if>
+			 	<if test=" null != tenname and ''!= tenname  ">
+					tenname,
+				</if>
+			 	<if test=" null != torder ">
+					torder,
+				</if>
+			 	<if test=" null != templist and ''!= templist  ">
+					templist,
+				</if>
+			 	<if test=" null != templist1 and ''!= templist1  ">
+					templist_1,
+				</if>
+			 	<if test=" null != templist2 and ''!= templist2  ">
+					templist_2,
+				</if>
+			 	<if test=" null != title and ''!= title  ">
+					title,
+				</if>
+			 	<if test=" null != keyword and ''!= keyword  ">
+					keyword,
+				</if>
+			 	<if test=" null != description and ''!= description  ">
+					description,
+				</if>
+			 	<if test=" null != ishidden ">
+					ishidden,
+				</if>
+			 	<if test=" null != unionid and ''!= unionid  ">
+					unionid,
+				</if>
+			 	<if test=" null != tptype ">
+					tptype,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != tid ">
+					 	#{tid},
+				</if>
+			 	<if test=" null != upid ">
+					 	#{upid},
+				</if>
+			 	<if test=" null != tname and ''!= tname  ">
+					 	#{tname},
+				</if>
+			 	<if test=" null != tenname and ''!= tenname  ">
+					 	#{tenname},
+				</if>
+			 	<if test=" null != torder ">
+					 	#{torder},
+				</if>
+			 	<if test=" null != templist and ''!= templist  ">
+					 	#{templist},
+				</if>
+			 	<if test=" null != templist1 and ''!= templist1  ">
+					 	#{templist1},
+				</if>
+			 	<if test=" null != templist2 and ''!= templist2  ">
+					 	#{templist2},
+				</if>
+			 	<if test=" null != title and ''!= title  ">
+					 	#{title},
+				</if>
+			 	<if test=" null != keyword and ''!= keyword  ">
+					 	#{keyword},
+				</if>
+			 	<if test=" null != description and ''!= description  ">
+					 	#{description},
+				</if>
+			 	<if test=" null != ishidden ">
+					 	#{ishidden},
+				</if>
+			 	<if test=" null != unionid and ''!= unionid  ">
+					 	#{unionid},
+				</if>
+			 	<if test=" null != tptype ">
+					 	#{tptype},
+				</if>
+		</trim>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.v5ent.movie.entity.Type" useGeneratedKeys="true" keyProperty="tid" >
+		INSERT INTO sea_type
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != tid ">
+					tid,
+				</if>
+			 	<if test=" null != upid ">
+					upid,
+				</if>
+			 	<if test=" null != tname and ''!= tname  ">
+					tname,
+				</if>
+			 	<if test=" null != tenname and ''!= tenname  ">
+					tenname,
+				</if>
+			 	<if test=" null != torder ">
+					torder,
+				</if>
+			 	<if test=" null != templist and ''!= templist  ">
+					templist,
+				</if>
+			 	<if test=" null != templist1 and ''!= templist1  ">
+					templist_1,
+				</if>
+			 	<if test=" null != templist2 and ''!= templist2  ">
+					templist_2,
+				</if>
+			 	<if test=" null != title and ''!= title  ">
+					title,
+				</if>
+			 	<if test=" null != keyword and ''!= keyword  ">
+					keyword,
+				</if>
+			 	<if test=" null != description and ''!= description  ">
+					description,
+				</if>
+			 	<if test=" null != ishidden ">
+					ishidden,
+				</if>
+			 	<if test=" null != unionid and ''!= unionid  ">
+					unionid,
+				</if>
+			 	<if test=" null != tptype ">
+					tptype,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != tid ">
+					 	#{tid},
+				</if>
+			 	<if test=" null != upid ">
+					 	#{upid},
+				</if>
+			 	<if test=" null != tname and ''!= tname  ">
+					 	#{tname},
+				</if>
+			 	<if test=" null != tenname and ''!= tenname  ">
+					 	#{tenname},
+				</if>
+			 	<if test=" null != torder ">
+					 	#{torder},
+				</if>
+			 	<if test=" null != templist and ''!= templist  ">
+					 	#{templist},
+				</if>
+			 	<if test=" null != templist1 and ''!= templist1  ">
+					 	#{templist1},
+				</if>
+			 	<if test=" null != templist2 and ''!= templist2  ">
+					 	#{templist2},
+				</if>
+			 	<if test=" null != title and ''!= title  ">
+					 	#{title},
+				</if>
+			 	<if test=" null != keyword and ''!= keyword  ">
+					 	#{keyword},
+				</if>
+			 	<if test=" null != description and ''!= description  ">
+					 	#{description},
+				</if>
+			 	<if test=" null != ishidden ">
+					 	#{ishidden},
+				</if>
+			 	<if test=" null != unionid and ''!= unionid  ">
+					 	#{unionid},
+				</if>
+			 	<if test=" null != tptype ">
+					 	#{tptype},
+				</if>
+		</trim>
+	</insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.v5ent.movie.entity.Type" >
+  		UPDATE sea_type
+		<set>
+			<trim suffixOverrides=",">
+					<if test=" null != upid ">
+						upid = #{upid},
+					</if>
+					<if test=" null != tname and ''!= tname  ">
+						tname = #{tname},
+					</if>
+					<if test=" null != tenname and ''!= tenname  ">
+						tenname = #{tenname},
+					</if>
+					<if test=" null != torder ">
+						torder = #{torder},
+					</if>
+					<if test=" null != templist and ''!= templist  ">
+						templist = #{templist},
+					</if>
+					<if test=" null != templist1 and ''!= templist1  ">
+						templist_1 = #{templist1},
+					</if>
+					<if test=" null != templist2 and ''!= templist2  ">
+						templist_2 = #{templist2},
+					</if>
+					<if test=" null != title and ''!= title  ">
+						title = #{title},
+					</if>
+					<if test=" null != keyword and ''!= keyword  ">
+						keyword = #{keyword},
+					</if>
+					<if test=" null != description and ''!= description  ">
+						description = #{description},
+					</if>
+					<if test=" null != ishidden ">
+						ishidden = #{ishidden},
+					</if>
+					<if test=" null != unionid and ''!= unionid  ">
+						unionid = #{unionid},
+					</if>
+					<if test=" null != tptype ">
+						tptype = #{tptype},
+					</if>
+			</trim>
+		</set>
+		<where>
+			 tid = #{tid}
+		</where>
+	</update>
+  
+	<update id="updateByPrimaryKey" parameterType="com.v5ent.movie.entity.Type" >
+	    UPDATE sea_type
+	   <set>
+			<trim suffixOverrides=",">
+					<if test=" null != upid ">
+						upid = #{upid},
+					</if>
+					<if test=" null != tname and ''!= tname  ">
+						tname = #{tname},
+					</if>
+					<if test=" null != tenname and ''!= tenname  ">
+						tenname = #{tenname},
+					</if>
+					<if test=" null != torder ">
+						torder = #{torder},
+					</if>
+					<if test=" null != templist and ''!= templist  ">
+						templist = #{templist},
+					</if>
+					<if test=" null != templist1 and ''!= templist1  ">
+						templist_1 = #{templist1},
+					</if>
+					<if test=" null != templist2 and ''!= templist2  ">
+						templist_2 = #{templist2},
+					</if>
+					<if test=" null != title and ''!= title  ">
+						title = #{title},
+					</if>
+					<if test=" null != keyword and ''!= keyword  ">
+						keyword = #{keyword},
+					</if>
+					<if test=" null != description and ''!= description  ">
+						description = #{description},
+					</if>
+					<if test=" null != ishidden ">
+						ishidden = #{ishidden},
+					</if>
+					<if test=" null != unionid and ''!= unionid  ">
+						unionid = #{unionid},
+					</if>
+					<if test=" null != tptype ">
+						tptype = #{tptype},
+					</if>
+			</trim>
+		</set>
+		<where>
+			tid = #{0}
+		</where>
+	  </update>
+
+	<!-- 首页查询 -->
+    <select id="selectTop" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sea_type
+        <where> 
+        upid=0 and tptype=0 ORDER BY torder asc limit 4
+        </where>
+    </select>
+
+</mapper>
