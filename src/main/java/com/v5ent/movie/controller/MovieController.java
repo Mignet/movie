@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.websocket.server.PathParam;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +37,7 @@ public class MovieController {
 	}
 	
 	@PostMapping("/movie/{vid}")
-	public Playdata top9(@PathParam("vid") long vid) {
+	public Playdata top9(@PathVariable("vid") long vid) {
 		return playDao.selectByPrimaryKey(vid);
 	}
 	
