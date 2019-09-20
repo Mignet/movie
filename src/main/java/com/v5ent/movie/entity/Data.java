@@ -1,7 +1,5 @@
 package com.v5ent.movie.entity;
 
-import java.io.Serializable;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
  /**
@@ -14,9 +12,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
  * 
  * Copyright (c) 深圳米格云链网络科技有限公司-版权所有
  */
-public class Data implements Serializable {
-	
-	private static final long serialVersionUID = -4494549681027786363L;
+public class Data {
 	
     /**
      *
@@ -273,6 +269,14 @@ public class Data implements Serializable {
      */
 	private String vLongtxt;
 	
+	/**
+    *播放列表
+    */
+	private String body;
+	/**
+	 *播放描述
+	 */
+	private String desc;
 
 
 	public void setVId(Integer vId){
@@ -683,7 +687,23 @@ public class Data implements Serializable {
 		return vLongtxt;
 	}
 	
+	public String getBody() {
+		return body;
+	}
 
+	public void setBody(String body) {
+		this.body = body;
+	}
+	
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+	
 	@Override
 	public String toString() {
 		return JSON.toJSONString(this, SerializerFeature.UseISO8601DateFormat);

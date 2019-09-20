@@ -12,9 +12,9 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
  * 
  * Copyright (c) 深圳米格云链网络科技有限公司-版权所有
  */
-public class Playdata {
+public class Desc{
 	
-    /**
+	/**
      *
      */
 	private Integer vId;
@@ -28,11 +28,6 @@ public class Playdata {
      *
      */
 	private String body;
-	
-    /**
-     *
-     */
-	private String body1;
 	
 
 
@@ -59,15 +54,6 @@ public class Playdata {
 	public String getBody(){
 		return body;
 	}
-	
-	public void setBody1(String body1){
-		this.body1 = body1;
-	}
-	
-	public String getBody1(){
-		return body1;
-	}
-	
 
 	@Override
 	public String toString() {

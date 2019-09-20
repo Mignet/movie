@@ -1,0 +1,9 @@
+server.port=9888
+mybatis.type-aliases-package=com.v5ent.movie.entity
+mybatis.mapper-locations=classpath*:mapper/*.xml
+
+ 
+spring.datasource.driverClassName = com.mysql.jdbc.Driver
+spring.datasource.url = jdbc:mysql://localhost:3306/seacms?characterEncoding=UTF-8
+spring.datasource.username = root
+spring.datasource.password = v5ent

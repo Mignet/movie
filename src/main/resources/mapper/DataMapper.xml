@@ -1312,7 +1312,7 @@
         <include refid="Base_Column_List" />
         FROM sea_data
         <where> 
-         tid in(select tid from sea_type where upid=#{tid}) ORDER BY v_hit desc limit 9
+         tid in(select tid from sea_type where upid=#{tid}) or tid=#{tid} ORDER BY v_hit desc limit 9
         </where>
     </select>
 

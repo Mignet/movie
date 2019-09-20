@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v5ent.movie.mapper.NewsMapper">
+	<!-- Result Map-->
+	<resultMap  type="com.v5ent.movie.entity.News" id="BaseResultMap">
+		<result column="n_id" property="nId" jdbcType="INTEGER"/>
+		<result column="tid" property="tid" jdbcType="SMALLINT"/>
+		<result column="n_title" property="nTitle" jdbcType="CHAR"/>
+		<result column="n_pic" property="nPic" jdbcType="CHAR"/>
+		<result column="n_hit" property="nHit" jdbcType="INTEGER"/>
+		<result column="n_money" property="nMoney" jdbcType="SMALLINT"/>
+		<result column="n_rank" property="nRank" jdbcType="SMALLINT"/>
+		<result column="n_digg" property="nDigg" jdbcType="SMALLINT"/>
+		<result column="n_tread" property="nTread" jdbcType="SMALLINT"/>
+		<result column="n_commend" property="nCommend" jdbcType="SMALLINT"/>
+		<result column="n_author" property="nAuthor" jdbcType="VARCHAR"/>
+		<result column="n_color" property="nColor" jdbcType="CHAR"/>
+		<result column="n_addtime" property="nAddtime" jdbcType="INTEGER"/>
+		<result column="n_note" property="nNote" jdbcType="SMALLINT"/>
+		<result column="n_letter" property="nLetter" jdbcType="CHAR"/>
+		<result column="n_isunion" property="nIsunion" jdbcType="SMALLINT"/>
+		<result column="n_recycled" property="nRecycled" jdbcType="SMALLINT"/>
+		<result column="n_entitle" property="nEntitle" jdbcType="VARCHAR"/>
+		<result column="n_outline" property="nOutline" jdbcType="VARCHAR"/>
+		<result column="n_keyword" property="nKeyword" jdbcType="VARCHAR"/>
+		<result column="n_from" property="nFrom" jdbcType="VARCHAR"/>
+		<result column="n_score" property="nScore" jdbcType="BIGINT"/>
+		<result column="n_scorenum" property="nScorenum" jdbcType="INTEGER"/>
+		<result column="n_content" property="nContent" jdbcType="LONGVARCHAR"/>
+	</resultMap>
+	
+  <sql id="Base_Column_List">
+    <trim suffixOverrides=",">
+	    	n_id,
+	    	tid,
+	    	n_title,
+	    	n_pic,
+	    	n_hit,
+	    	n_money,
+	    	n_rank,
+	    	n_digg,
+	    	n_tread,
+	    	n_commend,
+	    	n_author,
+	    	n_color,
+	    	n_addtime,
+	    	n_note,
+	    	n_letter,
+	    	n_isunion,
+	    	n_recycled,
+	    	n_entitle,
+	    	n_outline,
+	    	n_keyword,
+	    	n_from,
+	    	n_score,
+	    	n_scorenum,
+	    	n_content,
+    </trim>
+  </sql>
+  
+ <sql id="Base_Column_List_T">
+    <trim suffixOverrides=",">
+	    	t.n_id,
+	    	t.tid,
+	    	t.n_title,
+	    	t.n_pic,
+	    	t.n_hit,
+	    	t.n_money,
+	    	t.n_rank,
+	    	t.n_digg,
+	    	t.n_tread,
+	    	t.n_commend,
+	    	t.n_author,
+	    	t.n_color,
+	    	t.n_addtime,
+	    	t.n_note,
+	    	t.n_letter,
+	    	t.n_isunion,
+	    	t.n_recycled,
+	    	t.n_entitle,
+	    	t.n_outline,
+	    	t.n_keyword,
+	    	t.n_from,
+	    	t.n_score,
+	    	t.n_scorenum,
+	    	t.n_content,
+    </trim>
+  </sql>  
+  
+  <sql id="Base_Condition">
+		<if test=" null != nId ">
+			and n_id = #{nId}
+		</if>
+		<if test=" null != tid ">
+			and tid = #{tid}
+		</if>
+		<if test=" null != nTitle and ''!= nTitle  ">
+			and n_title = #{nTitle}
+		</if>
+		<if test=" null != nPic and ''!= nPic  ">
+			and n_pic = #{nPic}
+		</if>
+		<if test=" null != nHit ">
+			and n_hit = #{nHit}
+		</if>
+		<if test=" null != nMoney ">
+			and n_money = #{nMoney}
+		</if>
+		<if test=" null != nRank ">
+			and n_rank = #{nRank}
+		</if>
+		<if test=" null != nDigg ">
+			and n_digg = #{nDigg}
+		</if>
+		<if test=" null != nTread ">
+			and n_tread = #{nTread}
+		</if>
+		<if test=" null != nCommend ">
+			and n_commend = #{nCommend}
+		</if>
+		<if test=" null != nAuthor and ''!= nAuthor  ">
+			and n_author = #{nAuthor}
+		</if>
+		<if test=" null != nColor and ''!= nColor  ">
+			and n_color = #{nColor}
+		</if>
+		<if test=" null != nAddtime ">
+			and n_addtime = #{nAddtime}
+		</if>
+		<if test=" null != nNote ">
+			and n_note = #{nNote}
+		</if>
+		<if test=" null != nLetter and ''!= nLetter  ">
+			and n_letter = #{nLetter}
+		</if>
+		<if test=" null != nIsunion ">
+			and n_isunion = #{nIsunion}
+		</if>
+		<if test=" null != nRecycled ">
+			and n_recycled = #{nRecycled}
+		</if>
+		<if test=" null != nEntitle and ''!= nEntitle  ">
+			and n_entitle = #{nEntitle}
+		</if>
+		<if test=" null != nOutline and ''!= nOutline  ">
+			and n_outline = #{nOutline}
+		</if>
+		<if test=" null != nKeyword and ''!= nKeyword  ">
+			and n_keyword = #{nKeyword}
+		</if>
+		<if test=" null != nFrom and ''!= nFrom  ">
+			and n_from = #{nFrom}
+		</if>
+		<if test=" null != nScore ">
+			and n_score = #{nScore}
+		</if>
+		<if test=" null != nScorenum ">
+			and n_scorenum = #{nScorenum}
+		</if>
+		<if test=" null != nContent and ''!= nContent  ">
+			and n_content = #{nContent}
+		</if>
+  </sql>
+  
+  <select id="selectOneByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.movie.entity.News">
+		select <include refid="Base_Column_List" /> from sea_news 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.movie.entity.News">
+		select <include refid="Base_Column_List" /> from sea_news 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sea_news
+    where  n_id = #{0}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sea_news
+    where n_id = #{0}
+  </delete>
+
+  <insert id="insert" parameterType="com.v5ent.movie.entity.News" >
+    INSERT INTO sea_news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != nId ">
+					n_id,
+				</if>
+			 	<if test=" null != tid ">
+					tid,
+				</if>
+			 	<if test=" null != nTitle and ''!= nTitle  ">
+					n_title,
+				</if>
+			 	<if test=" null != nPic and ''!= nPic  ">
+					n_pic,
+				</if>
+			 	<if test=" null != nHit ">
+					n_hit,
+				</if>
+			 	<if test=" null != nMoney ">
+					n_money,
+				</if>
+			 	<if test=" null != nRank ">
+					n_rank,
+				</if>
+			 	<if test=" null != nDigg ">
+					n_digg,
+				</if>
+			 	<if test=" null != nTread ">
+					n_tread,
+				</if>
+			 	<if test=" null != nCommend ">
+					n_commend,
+				</if>
+			 	<if test=" null != nAuthor and ''!= nAuthor  ">
+					n_author,
+				</if>
+			 	<if test=" null != nColor and ''!= nColor  ">
+					n_color,
+				</if>
+			 	<if test=" null != nAddtime ">
+					n_addtime,
+				</if>
+			 	<if test=" null != nNote ">
+					n_note,
+				</if>
+			 	<if test=" null != nLetter and ''!= nLetter  ">
+					n_letter,
+				</if>
+			 	<if test=" null != nIsunion ">
+					n_isunion,
+				</if>
+			 	<if test=" null != nRecycled ">
+					n_recycled,
+				</if>
+			 	<if test=" null != nEntitle and ''!= nEntitle  ">
+					n_entitle,
+				</if>
+			 	<if test=" null != nOutline and ''!= nOutline  ">
+					n_outline,
+				</if>
+			 	<if test=" null != nKeyword and ''!= nKeyword  ">
+					n_keyword,
+				</if>
+			 	<if test=" null != nFrom and ''!= nFrom  ">
+					n_from,
+				</if>
+			 	<if test=" null != nScore ">
+					n_score,
+				</if>
+			 	<if test=" null != nScorenum ">
+					n_scorenum,
+				</if>
+			 	<if test=" null != nContent and ''!= nContent  ">
+					n_content,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != nId ">
+					 	#{nId},
+				</if>
+			 	<if test=" null != tid ">
+					 	#{tid},
+				</if>
+			 	<if test=" null != nTitle and ''!= nTitle  ">
+					 	#{nTitle},
+				</if>
+			 	<if test=" null != nPic and ''!= nPic  ">
+					 	#{nPic},
+				</if>
+			 	<if test=" null != nHit ">
+					 	#{nHit},
+				</if>
+			 	<if test=" null != nMoney ">
+					 	#{nMoney},
+				</if>
+			 	<if test=" null != nRank ">
+					 	#{nRank},
+				</if>
+			 	<if test=" null != nDigg ">
+					 	#{nDigg},
+				</if>
+			 	<if test=" null != nTread ">
+					 	#{nTread},
+				</if>
+			 	<if test=" null != nCommend ">
+					 	#{nCommend},
+				</if>
+			 	<if test=" null != nAuthor and ''!= nAuthor  ">
+					 	#{nAuthor},
+				</if>
+			 	<if test=" null != nColor and ''!= nColor  ">
+					 	#{nColor},
+				</if>
+			 	<if test=" null != nAddtime ">
+					 	#{nAddtime},
+				</if>
+			 	<if test=" null != nNote ">
+					 	#{nNote},
+				</if>
+			 	<if test=" null != nLetter and ''!= nLetter  ">
+					 	#{nLetter},
+				</if>
+			 	<if test=" null != nIsunion ">
+					 	#{nIsunion},
+				</if>
+			 	<if test=" null != nRecycled ">
+					 	#{nRecycled},
+				</if>
+			 	<if test=" null != nEntitle and ''!= nEntitle  ">
+					 	#{nEntitle},
+				</if>
+			 	<if test=" null != nOutline and ''!= nOutline  ">
+					 	#{nOutline},
+				</if>
+			 	<if test=" null != nKeyword and ''!= nKeyword  ">
+					 	#{nKeyword},
+				</if>
+			 	<if test=" null != nFrom and ''!= nFrom  ">
+					 	#{nFrom},
+				</if>
+			 	<if test=" null != nScore ">
+					 	#{nScore},
+				</if>
+			 	<if test=" null != nScorenum ">
+					 	#{nScorenum},
+				</if>
+			 	<if test=" null != nContent and ''!= nContent  ">
+					 	#{nContent},
+				</if>
+		</trim>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.v5ent.movie.entity.News" useGeneratedKeys="true" keyProperty="nId" >
+		INSERT INTO sea_news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != nId ">
+					n_id,
+				</if>
+			 	<if test=" null != tid ">
+					tid,
+				</if>
+			 	<if test=" null != nTitle and ''!= nTitle  ">
+					n_title,
+				</if>
+			 	<if test=" null != nPic and ''!= nPic  ">
+					n_pic,
+				</if>
+			 	<if test=" null != nHit ">
+					n_hit,
+				</if>
+			 	<if test=" null != nMoney ">
+					n_money,
+				</if>
+			 	<if test=" null != nRank ">
+					n_rank,
+				</if>
+			 	<if test=" null != nDigg ">
+					n_digg,
+				</if>
+			 	<if test=" null != nTread ">
+					n_tread,
+				</if>
+			 	<if test=" null != nCommend ">
+					n_commend,
+				</if>
+			 	<if test=" null != nAuthor and ''!= nAuthor  ">
+					n_author,
+				</if>
+			 	<if test=" null != nColor and ''!= nColor  ">
+					n_color,
+				</if>
+			 	<if test=" null != nAddtime ">
+					n_addtime,
+				</if>
+			 	<if test=" null != nNote ">
+					n_note,
+				</if>
+			 	<if test=" null != nLetter and ''!= nLetter  ">
+					n_letter,
+				</if>
+			 	<if test=" null != nIsunion ">
+					n_isunion,
+				</if>
+			 	<if test=" null != nRecycled ">
+					n_recycled,
+				</if>
+			 	<if test=" null != nEntitle and ''!= nEntitle  ">
+					n_entitle,
+				</if>
+			 	<if test=" null != nOutline and ''!= nOutline  ">
+					n_outline,
+				</if>
+			 	<if test=" null != nKeyword and ''!= nKeyword  ">
+					n_keyword,
+				</if>
+			 	<if test=" null != nFrom and ''!= nFrom  ">
+					n_from,
+				</if>
+			 	<if test=" null != nScore ">
+					n_score,
+				</if>
+			 	<if test=" null != nScorenum ">
+					n_scorenum,
+				</if>
+			 	<if test=" null != nContent and ''!= nContent  ">
+					n_content,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != nId ">
+					 	#{nId},
+				</if>
+			 	<if test=" null != tid ">
+					 	#{tid},
+				</if>
+			 	<if test=" null != nTitle and ''!= nTitle  ">
+					 	#{nTitle},
+				</if>
+			 	<if test=" null != nPic and ''!= nPic  ">
+					 	#{nPic},
+				</if>
+			 	<if test=" null != nHit ">
+					 	#{nHit},
+				</if>
+			 	<if test=" null != nMoney ">
+					 	#{nMoney},
+				</if>
+			 	<if test=" null != nRank ">
+					 	#{nRank},
+				</if>
+			 	<if test=" null != nDigg ">
+					 	#{nDigg},
+				</if>
+			 	<if test=" null != nTread ">
+					 	#{nTread},
+				</if>
+			 	<if test=" null != nCommend ">
+					 	#{nCommend},
+				</if>
+			 	<if test=" null != nAuthor and ''!= nAuthor  ">
+					 	#{nAuthor},
+				</if>
+			 	<if test=" null != nColor and ''!= nColor  ">
+					 	#{nColor},
+				</if>
+			 	<if test=" null != nAddtime ">
+					 	#{nAddtime},
+				</if>
+			 	<if test=" null != nNote ">
+					 	#{nNote},
+				</if>
+			 	<if test=" null != nLetter and ''!= nLetter  ">
+					 	#{nLetter},
+				</if>
+			 	<if test=" null != nIsunion ">
+					 	#{nIsunion},
+				</if>
+			 	<if test=" null != nRecycled ">
+					 	#{nRecycled},
+				</if>
+			 	<if test=" null != nEntitle and ''!= nEntitle  ">
+					 	#{nEntitle},
+				</if>
+			 	<if test=" null != nOutline and ''!= nOutline  ">
+					 	#{nOutline},
+				</if>
+			 	<if test=" null != nKeyword and ''!= nKeyword  ">
+					 	#{nKeyword},
+				</if>
+			 	<if test=" null != nFrom and ''!= nFrom  ">
+					 	#{nFrom},
+				</if>
+			 	<if test=" null != nScore ">
+					 	#{nScore},
+				</if>
+			 	<if test=" null != nScorenum ">
+					 	#{nScorenum},
+				</if>
+			 	<if test=" null != nContent and ''!= nContent  ">
+					 	#{nContent},
+				</if>
+		</trim>
+	</insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.v5ent.movie.entity.News" >
+  		UPDATE sea_news
+		<set>
+			<trim suffixOverrides=",">
+					<if test=" null != tid ">
+						tid = #{tid},
+					</if>
+					<if test=" null != nTitle and ''!= nTitle  ">
+						n_title = #{nTitle},
+					</if>
+					<if test=" null != nPic and ''!= nPic  ">
+						n_pic = #{nPic},
+					</if>
+					<if test=" null != nHit ">
+						n_hit = #{nHit},
+					</if>
+					<if test=" null != nMoney ">
+						n_money = #{nMoney},
+					</if>
+					<if test=" null != nRank ">
+						n_rank = #{nRank},
+					</if>
+					<if test=" null != nDigg ">
+						n_digg = #{nDigg},
+					</if>
+					<if test=" null != nTread ">
+						n_tread = #{nTread},
+					</if>
+					<if test=" null != nCommend ">
+						n_commend = #{nCommend},
+					</if>
+					<if test=" null != nAuthor and ''!= nAuthor  ">
+						n_author = #{nAuthor},
+					</if>
+					<if test=" null != nColor and ''!= nColor  ">
+						n_color = #{nColor},
+					</if>
+					<if test=" null != nAddtime ">
+						n_addtime = #{nAddtime},
+					</if>
+					<if test=" null != nNote ">
+						n_note = #{nNote},
+					</if>
+					<if test=" null != nLetter and ''!= nLetter  ">
+						n_letter = #{nLetter},
+					</if>
+					<if test=" null != nIsunion ">
+						n_isunion = #{nIsunion},
+					</if>
+					<if test=" null != nRecycled ">
+						n_recycled = #{nRecycled},
+					</if>
+					<if test=" null != nEntitle and ''!= nEntitle  ">
+						n_entitle = #{nEntitle},
+					</if>
+					<if test=" null != nOutline and ''!= nOutline  ">
+						n_outline = #{nOutline},
+					</if>
+					<if test=" null != nKeyword and ''!= nKeyword  ">
+						n_keyword = #{nKeyword},
+					</if>
+					<if test=" null != nFrom and ''!= nFrom  ">
+						n_from = #{nFrom},
+					</if>
+					<if test=" null != nScore ">
+						n_score = #{nScore},
+					</if>
+					<if test=" null != nScorenum ">
+						n_scorenum = #{nScorenum},
+					</if>
+					<if test=" null != nContent and ''!= nContent  ">
+						n_content = #{nContent},
+					</if>
+			</trim>
+		</set>
+		<where>
+			 n_id = #{nId}
+		</where>
+	</update>
+  
+	<update id="updateByPrimaryKey" parameterType="com.v5ent.movie.entity.News" >
+	    UPDATE sea_news
+	   <set>
+			<trim suffixOverrides=",">
+					<if test=" null != tid ">
+						tid = #{tid},
+					</if>
+					<if test=" null != nTitle and ''!= nTitle  ">
+						n_title = #{nTitle},
+					</if>
+					<if test=" null != nPic and ''!= nPic  ">
+						n_pic = #{nPic},
+					</if>
+					<if test=" null != nHit ">
+						n_hit = #{nHit},
+					</if>
+					<if test=" null != nMoney ">
+						n_money = #{nMoney},
+					</if>
+					<if test=" null != nRank ">
+						n_rank = #{nRank},
+					</if>
+					<if test=" null != nDigg ">
+						n_digg = #{nDigg},
+					</if>
+					<if test=" null != nTread ">
+						n_tread = #{nTread},
+					</if>
+					<if test=" null != nCommend ">
+						n_commend = #{nCommend},
+					</if>
+					<if test=" null != nAuthor and ''!= nAuthor  ">
+						n_author = #{nAuthor},
+					</if>
+					<if test=" null != nColor and ''!= nColor  ">
+						n_color = #{nColor},
+					</if>
+					<if test=" null != nAddtime ">
+						n_addtime = #{nAddtime},
+					</if>
+					<if test=" null != nNote ">
+						n_note = #{nNote},
+					</if>
+					<if test=" null != nLetter and ''!= nLetter  ">
+						n_letter = #{nLetter},
+					</if>
+					<if test=" null != nIsunion ">
+						n_isunion = #{nIsunion},
+					</if>
+					<if test=" null != nRecycled ">
+						n_recycled = #{nRecycled},
+					</if>
+					<if test=" null != nEntitle and ''!= nEntitle  ">
+						n_entitle = #{nEntitle},
+					</if>
+					<if test=" null != nOutline and ''!= nOutline  ">
+						n_outline = #{nOutline},
+					</if>
+					<if test=" null != nKeyword and ''!= nKeyword  ">
+						n_keyword = #{nKeyword},
+					</if>
+					<if test=" null != nFrom and ''!= nFrom  ">
+						n_from = #{nFrom},
+					</if>
+					<if test=" null != nScore ">
+						n_score = #{nScore},
+					</if>
+					<if test=" null != nScorenum ">
+						n_scorenum = #{nScorenum},
+					</if>
+					<if test=" null != nContent and ''!= nContent  ">
+						n_content = #{nContent},
+					</if>
+			</trim>
+		</set>
+		<where>
+			n_id = #{0}
+		</where>
+	  </update>
+
+</mapper>

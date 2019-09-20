@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.v5ent.movie.controller.NewsController;
 import com.v5ent.movie.mapper.DataMapper;
+import com.v5ent.movie.vo.UrlVo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,7 +32,10 @@ public class MovieApplicationTests {
 	
 	@Test
 	public void testSpider() throws Exception {
-		System.out.println(spiderController.spiderNews("https://www.ddxs.cc/ddxs/149165/","21"));
+		UrlVo vo = new UrlVo();
+		vo.setUrl("https://www.ddxs.cc/ddxs/149165/");
+		vo.setId("21");
+		System.out.println(spiderController.spiderNews(vo));
 	}
 	
 	

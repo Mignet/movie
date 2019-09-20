@@ -1,13 +1,7 @@
 package com.v5ent.movie.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import java.io.Serializable;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
- import java.lang.Byte;
- import java.lang.Integer;
- import java.lang.Short;
- import java.lang.String;
  /**
  * 
  * @描述： 实体Bean
@@ -18,9 +12,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
  * 
  * Copyright (c) 深圳米格云链网络科技有限公司-版权所有
  */
-public class Type implements Serializable {
-	
-	private static final long serialVersionUID = 4150763326651404782L;
+public class Type{
 	
     /**
      *

@@ -1,0 +1,17 @@
+server:
+   port: 9888
+spring:
+   datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://v5ent.com:3306/seacms?characterEncoding=UTF-8
+      username: root
+      password: v5ent
+  
+   mvc:
+      view:
+       prefix: /templates/
+       suffix: .jsp
+       
+mybatis:
+   type-aliases-package: com.v5ent.movie.entity
+   mapper-locations: classpath:mappers/*.xml

@@ -8,4 +8,8 @@ import com.v5ent.movie.entity.Playdata;
 public interface PlaydataMapper {
 
 	Playdata selectByPrimaryKey(long vid);
+
+	int updateByPrimaryKeySelective(Playdata playdata);
+
+	int insert(Playdata playdata);
 }
