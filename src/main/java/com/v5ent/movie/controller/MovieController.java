@@ -94,7 +94,7 @@ public class MovieController {
         Element list = playlist.getElementsByTag( "list" ).get(0);
         currentPage = Integer.valueOf(list.attr("page"));
         pagecount =  Integer.valueOf(list.attr("pagecount"));
-        LOGGER.info("currentPage[{}],pagecount[{}],pagesize[{}],recordcount[{}]",currentPage,list.attr("pagesize"),list.attr("recordcount"));
+        LOGGER.info("currentPage[{}],pagecount[{}],pagesize[{}],recordcount[{}]",currentPage,pagecount,list.attr("pagesize"),pagecount,list.attr("pagecount"));
         Elements videos = list.getElementsByTag("video");
         for(Element e:videos) {
         	Data d = new Data();
@@ -127,7 +127,7 @@ public class MovieController {
         		d.setVActor(d.getVActor().substring(0, 200));
         	}
         	d.setVDirector(e.selectFirst("director").text());
-        	d.setBody(e.selectFirst("dl>dd").text());
+        	d.setBody("酷M3U8$$"+e.selectFirst("dl>dd").text());
         	d.setDesc(e.selectFirst("des").text());
    
         	Data t = dataDao.selectOneByCondition(new Data() {{setVName(d.getVName());}});
