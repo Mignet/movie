@@ -33,11 +33,6 @@ public class NewsController {
 	@Resource
 	private TypeMapper typeDao;
 	
-	@GetMapping("/")
-	public String home() {
-		return "index";
-	}
-
 	@PostMapping("book")
 	public String spiderNews(@RequestBody UrlVo vo) throws IOException {
 		StringBuilder result = new StringBuilder("ok");

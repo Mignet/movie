@@ -17,6 +17,8 @@ public interface DataMapper {
 	List<Data> top9(long tid);
 
 	Data selectOneByCondition(Data d);
+	
+	Data selectByPrimaryKey(long vid);
 
 	@Select("SELECT max(v_id) FROM `sea_data`")
 	Integer getMaxId();

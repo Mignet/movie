@@ -53,8 +53,10 @@ public class MovieController {
 	}
 	
 	@GetMapping("/movie/{vid}")
-	public Playdata selectByPrimaryKey(@PathVariable("vid") long vid) {
-		return playDao.selectByPrimaryKey(vid);
+	public Data selectByPrimaryKey(@PathVariable("vid") long vid) {
+		Data d = dataDao.selectByPrimaryKey(vid);
+		d.setBody(playDao.selectByPrimaryKey(vid).getBody());
+		return d;
 	}
 	
 	@GetMapping("/movie")

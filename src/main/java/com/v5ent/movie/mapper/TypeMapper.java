@@ -10,6 +10,7 @@ import com.v5ent.movie.entity.Type;
 
 @Mapper
 public interface TypeMapper {
+	
 	List<Type> selectTop();
 	
 	@Select("SELECT * FROM sea_type WHERE tid BETWEEN 21 AND 26")
