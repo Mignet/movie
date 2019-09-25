@@ -25,4 +25,7 @@ public interface NewsMapper{
 
 	@Select("select n_id as nId,tid,n_title as nTitle from sea_news where tid=#{tid} order by n_addtime desc limit 20")
 	List<News> getListByTid(String tid);
+	
+	@Select("select n_id from `sea_news` where tid = (SELECT tid FROM `sea_news` where n_id = #{tid}) and n_id>#{tid} ORDER BY n_id LIMIT 1")
+	Integer getNextIdByTid(String tid);
 }

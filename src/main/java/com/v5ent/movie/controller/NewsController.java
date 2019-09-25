@@ -1,6 +1,7 @@
 package com.v5ent.movie.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -33,6 +34,17 @@ public class NewsController {
 	@Resource
 	private TypeMapper typeDao;
 	
+	private static String replace(String str) {
+		char[] chars = str.toCharArray(); 
+		StringBuffer buffer=new StringBuffer();
+		for(int i = 0; i < chars.length; i ++) { 
+			if((chars[i] >= 19968 && chars[i] <= 40869) || (chars[i] >= 97 && chars[i] <= 122) || (chars[i] >= 65 && chars[i] <= 90)) { 
+				buffer.append(chars[i]);
+			} 
+		} 
+		return buffer.toString();
+	}
+	
 	@PostMapping("book")
 	public String spiderNews(@RequestBody UrlVo vo) throws IOException {
 		StringBuilder result = new StringBuilder("ok");
@@ -43,9 +55,8 @@ public class NewsController {
 		for (Element e : list) {
 			String link = e.attr("abs:href").replace("\r\n", "").replace("\t", "");
 			String title = e.text();
-			LOGGER.debug("title:[" + title + "]");
-			if ((lastTitle != null) && (lastTitle.equals(title))) {
-				startFlag = true;
+			if (lastTitle != null && title!=null && replace(lastTitle).equals(replace(title))) {
+					startFlag = true;
 			} else if ((lastTitle == null) || (startFlag)) {
 				LOGGER.info("[" + link + "]");
 				result.append("\r\ntitle:[" + title + "][" + link + "]");
@@ -65,14 +76,19 @@ public class NewsController {
 				n.setNFrom(link);
 				n.setNContent(ctx);
 				newsDao.insertNews(n);
+			}else {
+				LOGGER.error("title:[{}] lastTitle:[{}]", title,lastTitle);
 			}
 		}
 		return result.toString();
 	}
 	
 	@GetMapping("book/{id}")
-	public String readNews(@PathVariable("id") String id) {
-		return newsDao.getContentById(id);
+	public Map<String,String> readNews(@PathVariable("id") String id) {
+		Map<String,String> m = new HashMap<>();
+		m.put("body",newsDao.getContentById(id));
+		m.put("nextId",String.valueOf(newsDao.getNextIdByTid(id)));
+		return m;
 	}
 	
 	@GetMapping("books/{tid}")
