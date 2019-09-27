@@ -56,7 +56,13 @@ public class MovieController {
 	public Data selectByPrimaryKey(@PathVariable("vid") long vid) {
 		Data d = dataDao.selectByPrimaryKey(vid);
 		d.setBody(playDao.selectByPrimaryKey(vid).getBody());
+		d.setDesc(descDao.selectByPrimaryKey(vid).getBody());
 		return d;
+	}
+	
+	@GetMapping("/type/{tid}/movie")
+	public List<Data> selectByType(@PathVariable("tid") long tid) {
+		return dataDao.selectTop60ByTid(tid);
 	}
 	
 	@GetMapping("/movie")

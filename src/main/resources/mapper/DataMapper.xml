@@ -341,6 +341,14 @@
     where  v_id = #{0}
   </select>
   
+  <select id="selectTop60ByTid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sea_data
+    where tid in(select tid from sea_type where upid=#{tid}) or tid=#{tid}
+    order by v_addtime desc limit 100
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sea_data
     where v_id = #{0}
@@ -1307,7 +1315,7 @@
     </select>
     
 	<!-- 查询 -->
-    <select id="top9" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="top9" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
         <include refid="Base_Column_List" />
         FROM sea_data

@@ -12,4 +12,5 @@ public interface PlaydataMapper {
 	int updateByPrimaryKeySelective(Playdata playdata);
 
 	int insert(Playdata playdata);
+
 }
