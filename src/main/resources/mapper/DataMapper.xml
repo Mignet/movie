@@ -1311,10 +1311,12 @@
         FROM sea_data
         <where> 
                 v_name LIKE CONCAT('%','${keywords}','%' )  
+                or 
+                v_enname LIKE CONCAT('%','${keywords}','%' )
         </where>
     </select>
     
-	<!-- 查询 -->
+	<!-- top9 -->
     <select id="top9" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
         <include refid="Base_Column_List" />
