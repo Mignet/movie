@@ -1312,7 +1312,7 @@
         <where> 
                 v_name LIKE CONCAT('%','${keywords}','%' )  
                 or 
-                v_enname LIKE CONCAT('%','${keywords}','%' )
+                v_enname LIKE CONCAT('${keywords}','%' )
         </where>
     </select>
     
