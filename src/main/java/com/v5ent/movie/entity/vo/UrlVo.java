@@ -1,4 +1,4 @@
-package com.v5ent.movie.vo;
+package com.v5ent.movie.entity.vo;
 
 import org.hibernate.validator.constraints.NotBlank;
 

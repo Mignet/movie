@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.v5ent.movie.controller.NewsController;
+import com.v5ent.movie.entity.vo.UrlVo;
 import com.v5ent.movie.mapper.DataMapper;
-import com.v5ent.movie.vo.UrlVo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

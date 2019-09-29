@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.v5ent.movie.entity.News;
 import com.v5ent.movie.entity.Type;
+import com.v5ent.movie.entity.vo.UrlVo;
 import com.v5ent.movie.mapper.NewsMapper;
 import com.v5ent.movie.mapper.TypeMapper;
-import com.v5ent.movie.vo.UrlVo;
 
 @RestController
 public class NewsController {
