@@ -88,7 +88,7 @@ public class MovieService {
         	Data t = dataDao.selectOneByCondition(new Data() {{setVName(d.getVName());}});
         	if(t!=null) {
         		if(d.getVAddtime()>t.getVAddtime()) {
-        			result.append(d.getVName()+"=已存在，只更新数据<br>");
+        			result.append("<a href='playlist.html?vid="+t.getVId()+"'>"+d.getVName()+"</a>=已存在，只更新数据<br>");
         			playDao.updateByPrimaryKeySelective(new Playdata() {{
         				setVId(t.getVId());
         				setBody(d.getBody());
@@ -97,9 +97,9 @@ public class MovieService {
         			result.append(d.getVName()+"=已存在，时间较早不需要更新<br>");
         		}
         	}else {
-        		result.append(d.getVName()+"=不存在，新增数据<br>");
         		dataDao.insert(d);
         		Integer vid = dataDao.getMaxId();
+        		result.append("<a href='playlist.html?vid="+vid+"'>"+d.getVName()+"</a>=不存在，新增数据<br>");
         		playDao.insert(new Playdata() {{
         			setVId(vid);
         			setTid(d.getTid());
