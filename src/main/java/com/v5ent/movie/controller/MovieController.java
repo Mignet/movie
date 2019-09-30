@@ -39,6 +39,15 @@ public class MovieController {
 	@Resource
 	private DescMapper descDao;
 	
+	@GetMapping("/movie")
+	public Map<String, List<Data>> home() {
+		Map<String,List<Data>> map = new TreeMap<>();
+		for(Type type:typeDao.selectTop()) {
+			map.put(type.getTid()+","+type.getTname(), dataDao.top9(type.getTid()));
+		}
+		return map;
+	}
+	
 	@PostMapping("/movie/search")
 	public List<Data> search(@RequestBody String keywords) {
 		if(keywords == null || "".equals(keywords.trim())) {
@@ -59,15 +68,6 @@ public class MovieController {
 	@GetMapping("/type/{tid}/movie")
 	public List<Data> selectByType(@PathVariable("tid") long tid) {
 		return dataDao.selectTop60ByTid(tid);
-	}
-	
-	@GetMapping("/movie")
-	public Map<String, List<Data>> index() {
-		Map<String,List<Data>> map = new TreeMap<>();
-		for(Type type:typeDao.selectTop()) {
-			map.put(type.getTid()+","+type.getTname(), dataDao.top9(type.getTid()));
-		}
-		return map;
 	}
 	
 	@PostMapping("movie")
