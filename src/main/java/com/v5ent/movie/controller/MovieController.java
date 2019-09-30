@@ -22,14 +22,14 @@ import com.v5ent.movie.mapper.DataMapper;
 import com.v5ent.movie.mapper.DescMapper;
 import com.v5ent.movie.mapper.PlaydataMapper;
 import com.v5ent.movie.mapper.TypeMapper;
-import com.v5ent.movie.service.MovieService;
+import com.v5ent.movie.service.SpiderService;
 
 @RestController
 public class MovieController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MovieController.class);
 	
 	@Resource
-	private MovieService movieService;
+	private SpiderService spider;
 	@Resource
 	private DataMapper dataDao;
 	@Resource
@@ -73,7 +73,7 @@ public class MovieController {
 	@PostMapping("movie")
 	public String spiderMovies() throws IOException {
 		StringBuilder result = new StringBuilder("ok");
-		movieService.collect(result,1);
+		spider.spiderMovies(result,1);
 		return result.toString();
 	}
 	

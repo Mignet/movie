@@ -28,4 +28,7 @@ public interface NewsMapper{
 	
 	@Select("select n_id from `sea_news` where tid = (SELECT tid FROM `sea_news` where n_id = #{tid}) and n_id>#{tid} ORDER BY n_id LIMIT 1")
 	Integer getNextIdByTid(String tid);
+
+	@Select("SELECT max(n_id) FROM `sea_news`")
+	Integer getMaxId();
 }

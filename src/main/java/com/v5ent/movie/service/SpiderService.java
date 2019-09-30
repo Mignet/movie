@@ -18,14 +18,17 @@ import org.springframework.stereotype.Service;
 
 import com.v5ent.movie.entity.Data;
 import com.v5ent.movie.entity.Desc;
+import com.v5ent.movie.entity.News;
 import com.v5ent.movie.entity.Playdata;
+import com.v5ent.movie.entity.vo.UrlVo;
 import com.v5ent.movie.mapper.DataMapper;
 import com.v5ent.movie.mapper.DescMapper;
+import com.v5ent.movie.mapper.NewsMapper;
 import com.v5ent.movie.mapper.PlaydataMapper;
 import com.v5ent.movie.mapper.TypeMapper;
 
 @Service
-public class MovieService {
+public class SpiderService {
 	
 	@Resource
 	private DataMapper dataDao;
@@ -35,13 +38,16 @@ public class MovieService {
 	private PlaydataMapper playDao;
 	@Resource
 	private DescMapper descDao;
+	@Resource
+	private NewsMapper newsDao;
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(MovieService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SpiderService.class);
+	
 	private List<Map<String, String>> uniontypeList = null;
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	int currentPage = 1;int pagecount = 10;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private int currentPage = 1;int pagecount = 10;
 	
-	public void collect(StringBuilder result,int page) throws IOException {
+	public void spiderMovies(StringBuilder result,int page) throws IOException {
 		if(uniontypeList==null) {
 			uniontypeList = typeDao.selectUnionTypes();
 		}
@@ -115,7 +121,7 @@ public class MovieService {
         currentPage++;
         if(currentPage<=pagecount) {
         	result.append("===========准备抓第"+currentPage+"页============<br>");
-        	collect(result,currentPage);
+        	spiderMovies(result,currentPage);
         }else {
         	LOGGER.info("OK");
         }
@@ -128,5 +134,56 @@ public class MovieService {
 			}
 		}
 		return null;
+	}
+	private static String replace(String str) {
+		char[] chars = str.toCharArray(); 
+		StringBuffer buffer=new StringBuffer();
+		for(int i = 0; i < chars.length; i ++) { 
+			if((chars[i] >= 19968 && chars[i] <= 40869) || (chars[i] >= 97 && chars[i] <= 122) || (chars[i] >= 65 && chars[i] <= 90)) { 
+				buffer.append(chars[i]);
+			} 
+		} 
+		return buffer.toString();
+	}
+	
+	public String spiderNews(UrlVo vo) throws IOException {
+		StringBuilder result = new StringBuilder("ok");
+		String lastTitle = newsDao.selectTitleByTid(vo.getId());
+		boolean startFlag = false;
+		Document book = Jsoup.connect(vo.getUrl()).get();
+		Elements list = book.select("div.box_con>div#list>dl>dd>a");
+		if(list==null || list.isEmpty()) {
+			result.append("目录不存在");
+		}
+		for (Element e : list) {
+			String link = e.attr("abs:href").replace("\r\n", "").replace("\t", "");
+			String title = e.text();
+			if (lastTitle != null && title!=null && replace(lastTitle).equals(replace(title))) {
+					startFlag = true;
+			} else if ((lastTitle == null) || (startFlag)) {
+				LOGGER.info("title:[{}],link:[{}]",title,link);
+				Document page = Jsoup.connect(link).get();
+				Elements content = page.select("#content");
+
+				String ctx = content.html();
+				News n = new News();
+				n.setTid(Short.valueOf(vo.getId()));
+				n.setNTitle(title);
+				n.setNAddtime((int) (System.currentTimeMillis() / 1000L));
+				n.setNLetter("Hx");
+				n.setNIsunion((short) 0);
+				n.setNRecycled((short) 0);
+				n.setNTitle(title);
+				n.setNOutline(title);
+				n.setNFrom(link);
+				n.setNContent(ctx);
+				newsDao.insertNews(n);
+				int nId = newsDao.getMaxId();
+				result.append("\r\n<a href='book.html?nid="+nId+"'>title:[" + title + "][" + link + "]</a>");
+			}else {
+				LOGGER.debug("title:[{}] lastTitle:[{}]", title,lastTitle);
+			}
+		}
+		return result.toString();
 	}
 }
