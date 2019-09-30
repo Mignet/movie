@@ -52,13 +52,16 @@ public class NewsController {
 		boolean startFlag = false;
 		Document book = Jsoup.connect(vo.getUrl()).get();
 		Elements list = book.select("div.box_con>div#list>dl>dd>a");
+		if(list==null || list.isEmpty()) {
+			result.append("目录不存在");
+		}
 		for (Element e : list) {
 			String link = e.attr("abs:href").replace("\r\n", "").replace("\t", "");
 			String title = e.text();
 			if (lastTitle != null && title!=null && replace(lastTitle).equals(replace(title))) {
 					startFlag = true;
 			} else if ((lastTitle == null) || (startFlag)) {
-				LOGGER.info("[" + link + "]");
+				LOGGER.info("title:[{}],link:[{}]",title,link);
 				result.append("\r\ntitle:[" + title + "][" + link + "]");
 				Document page = Jsoup.connect(link).get();
 				Elements content = page.select("#content");
@@ -77,7 +80,7 @@ public class NewsController {
 				n.setNContent(ctx);
 				newsDao.insertNews(n);
 			}else {
-				LOGGER.error("title:[{}] lastTitle:[{}]", title,lastTitle);
+				LOGGER.debug("title:[{}] lastTitle:[{}]", title,lastTitle);
 			}
 		}
 		return result.toString();

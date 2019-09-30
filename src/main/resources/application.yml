@@ -1,26 +1,16 @@
 server:
    port: 9888
+
+logging:
+   level:
+      com.v5ent.movie: DEBUG
+
 spring:
    datasource:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/seacms?characterEncoding=UTF-8&serverTimezone=UTC&useUnicode=true&useSSL=false
       username: root
       password: v5ent
-  
-   mvc:
-      view:
-       prefix: /templates/
-       suffix: .jsp
-
-# thymeleaf 
-   thymeleaf:
-      prefix:classpath:/templates/ 
-      check-template-location:true 
-      suffix:.html 
-      encoding:UTF-8 
-      content-type:text/html 
-      mode:HTML5 
-      cache:false
       
 mybatis:
    type-aliases-package: com.v5ent.movie.entity
