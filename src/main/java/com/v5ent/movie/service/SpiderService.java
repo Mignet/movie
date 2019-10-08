@@ -81,7 +81,13 @@ public class SpiderService {
         	d.setVLang(e.selectFirst("lang").text());
         	d.setVPublisharea(e.selectFirst("area").toString().replace("<area>", "").replace("</area>", ""));
         	d.setVPublishyear(Integer.valueOf(e.selectFirst("year").text()));
-        	d.setVNickname(CharUtils.getFirstSpell(d.getVName()));
+        	String nickName = "";
+			try {
+				nickName = CharUtils.getFirstSpell(d.getVName());
+			} catch (Exception e1) {
+				LOGGER.error(d.getVName()+" error:",e1);
+			}
+        	d.setVNickname(nickName);
 //        	d.setstate(e.selectFirst("state").text());
         	d.setVNote(e.selectFirst("note").text());
         	d.setVActor(e.selectFirst("actor").text());

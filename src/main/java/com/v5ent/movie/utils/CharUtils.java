@@ -59,7 +59,7 @@ public final class CharUtils {
                     if (arr[i] > 128) {   
                             try {   
                                     String[] temp = PinyinHelper.toHanyuPinyinStringArray(arr[i], defaultFormat);   
-                                    if (temp != null) {   
+                                    if (temp != null && temp.length>0) {   
                                             pybf.append(temp[0].charAt(0));   
                                     }   
                             } catch (BadHanyuPinyinOutputFormatCombination e) {   
@@ -96,6 +96,13 @@ public final class CharUtils {
             return pybf.toString();   
     }  
 	
+	public static void main(String[] args)
+	{
+		String cnStr = "神奇女侠：血脉";
+		LOGGER.info("{}-->{}",cnStr, getPingYin(cnStr));
+		LOGGER.info("{}-->{}",cnStr, getFirstSpell(cnStr));
+	}
+  
     public static String replace(String str) {
 		char[] chars = str.toCharArray(); 
 		StringBuffer buffer=new StringBuffer();
