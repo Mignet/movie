@@ -26,6 +26,7 @@ import com.v5ent.movie.mapper.DescMapper;
 import com.v5ent.movie.mapper.NewsMapper;
 import com.v5ent.movie.mapper.PlaydataMapper;
 import com.v5ent.movie.mapper.TypeMapper;
+import com.v5ent.movie.utils.CharUtils;
 
 @Service
 public class SpiderService {
@@ -78,8 +79,9 @@ public class SpiderService {
 //        	d.settype(e.selectFirst("type").text());
         	d.setVPic(e.selectFirst("pic").text());
         	d.setVLang(e.selectFirst("lang").text());
-        	d.setVPublisharea(e.selectFirst("area").toString().replace("<area>", ""));
+        	d.setVPublisharea(e.selectFirst("area").toString().replace("<area>", "").replace("</area>", ""));
         	d.setVPublishyear(Integer.valueOf(e.selectFirst("year").text()));
+        	d.setVNickname(CharUtils.getFirstSpell(d.getVName()));
 //        	d.setstate(e.selectFirst("state").text());
         	d.setVNote(e.selectFirst("note").text());
         	d.setVActor(e.selectFirst("actor").text());
@@ -135,16 +137,6 @@ public class SpiderService {
 		}
 		return null;
 	}
-	private static String replace(String str) {
-		char[] chars = str.toCharArray(); 
-		StringBuffer buffer=new StringBuffer();
-		for(int i = 0; i < chars.length; i ++) { 
-			if((chars[i] >= 19968 && chars[i] <= 40869) || (chars[i] >= 97 && chars[i] <= 122) || (chars[i] >= 65 && chars[i] <= 90)) { 
-				buffer.append(chars[i]);
-			} 
-		} 
-		return buffer.toString();
-	}
 	
 	public String spiderNews(UrlVo vo) throws IOException {
 		StringBuilder result = new StringBuilder("ok");
@@ -158,7 +150,7 @@ public class SpiderService {
 		for (Element e : list) {
 			String link = e.attr("abs:href").replace("\r\n", "").replace("\t", "");
 			String title = e.text();
-			if (lastTitle != null && title!=null && replace(lastTitle).equals(replace(title))) {
+			if (lastTitle != null && title!=null && CharUtils.replace(lastTitle).equals(CharUtils.replace(title))) {
 					startFlag = true;
 			} else if ((lastTitle == null) || (startFlag)) {
 				LOGGER.info("title:[{}],link:[{}]",title,link);
