@@ -51,6 +51,11 @@ public class NewsController {
 		return newsDao.getListByTid(tid);
 	}
 	
+	@GetMapping("/type/{tid}/news")
+	public List<News> selectByType(@PathVariable("tid") long tid) {
+		return newsDao.selectAllByTid(tid);
+	}
+	
 	@GetMapping("books")
 	public Map<String,List<News>> home() {
 		LOGGER.debug("books home");
