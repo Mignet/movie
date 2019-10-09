@@ -151,13 +151,14 @@ public class SpiderService {
 	
 	public String spiderNews(UrlVo vo) throws IOException {
 		StringBuilder result = new StringBuilder("ok");
-		String lastTitle = newsDao.selectTitleByTid(vo.getId());
 		boolean startFlag = false;
 		Document book = Jsoup.connect(vo.getUrl()).get();
 		Elements list = book.select("div.box_con>div#list>dl>dd>a");
 		if(list==null || list.isEmpty()) {
 			result.append("目录不存在");
+			return result.toString();
 		}
+		String lastTitle = newsDao.selectTitleByTid(vo.getId());
 		for (Element e : list) {
 			String link = e.attr("abs:href").replace("\r\n", "").replace("\t", "");
 			String title = e.text();
