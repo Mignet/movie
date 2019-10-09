@@ -345,8 +345,8 @@
     select 
     <include refid="Base_Column_List" />
     from sea_data
-    where tid in(select tid from sea_type where upid=#{tid}) or tid=#{tid}
-    order by v_addtime desc limit 100
+    where tid in(select tid from sea_type where upid=#{tid} and tid!=20) or tid=#{tid}
+    order by v_addtime desc limit 60
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >

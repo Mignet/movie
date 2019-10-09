@@ -103,6 +103,11 @@ public class SpiderService {
         	if(t!=null) {
         		if(d.getVAddtime()>t.getVAddtime()) {
         			result.append("<a href='playlist.html?vid="+t.getVId()+"'>"+d.getVName()+"</a>=已存在，只更新数据<br>");
+        			dataDao.updateByPrimaryKeySelective(new Data() {{
+        				setVId(t.getVId());
+        				setVAddtime(d.getVAddtime());
+        				setVPic(d.getVPic());
+        			}});
         			playDao.updateByPrimaryKeySelective(new Playdata() {{
         				setVId(t.getVId());
         				setBody(d.getBody());
