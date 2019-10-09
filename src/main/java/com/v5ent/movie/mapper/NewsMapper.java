@@ -23,7 +23,7 @@ public interface NewsMapper{
 	@Select("SELECT n_content from sea_news where n_id=#{id}")
 	String getContentById(String id);
 
-	@Select("select n_id as nId,tid,n_title as nTitle from sea_news where tid=#{tid} order by n_addtime desc limit 20")
+	@Select("select n_id as nId,tid,n_title as nTitle from sea_news where tid=#{tid} order by n_id desc limit 20")
 	List<News> getListByTid(String tid);
 	
 	@Select("select n_id from `sea_news` where tid = (SELECT tid FROM `sea_news` where n_id = #{tid}) and n_id>#{tid} ORDER BY n_id LIMIT 1")
@@ -32,6 +32,6 @@ public interface NewsMapper{
 	@Select("SELECT max(n_id) FROM `sea_news`")
 	Integer getMaxId();
 
-	@Select("SELECT n_id as nId,tid,n_title as nTitle FROM `sea_news` where tid=#{tid} order by n_addtime")
+	@Select("SELECT n_id as nId,tid,n_title as nTitle FROM `sea_news` where tid=#{tid} order by n_id")
 	List<News> selectAllByTid(long tid);
 }
