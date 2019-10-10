@@ -1313,6 +1313,8 @@
                 v_name LIKE CONCAT('%','${keywords}','%' )  
                 or 
                 v_enname LIKE CONCAT('${keywords}','%' )
+                or 
+                v_nickname LIKE CONCAT('%','${keywords}','%' ) 
         </where>
     </select>
     

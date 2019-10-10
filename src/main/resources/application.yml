@@ -3,7 +3,7 @@ server:
 
 logging:
    level:
-      com.v5ent.movie: DEBUG
+      com.v5ent.movie: INFO
 
 # thymeleaf 
 thymeleaf:

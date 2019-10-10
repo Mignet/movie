@@ -3,6 +3,7 @@ package com.v5ent.movie.service;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.v5ent.movie.entity.Data;
 import com.v5ent.movie.entity.Desc;
@@ -148,15 +150,29 @@ public class SpiderService {
 		}
 		return null;
 	}
-	
+	//https://www.xiangcunxiaoshuo.la/html/617693/
+	private static Map<String,String> map = new HashMap<>();
+	static{
+		map.put("21","https://www.xiangcunxiaoshuo.la/html/617693/");
+		map.put("22","https://www.xiangcunxiaoshuo.la/html/258/");
+		map.put("23","https://www.xiangcunxiaoshuo.la/html/451218/");
+		map.put("24","https://www.xiangcunxiaoshuo.la/html/537365/");
+		map.put("25","https://www.xiangcunxiaoshuo.la/html/417594/");
+		map.put("26","https://www.xiangcunxiaoshuo.la/html/573964/");
+	}
 	public String spiderNews(UrlVo vo) throws IOException {
 		StringBuilder result = new StringBuilder("ok");
 		boolean startFlag = false;
 		Document book = Jsoup.connect(vo.getUrl()).get();
 		Elements list = book.select("div.box_con>div#list>dl>dd>a");
 		if(list==null || list.isEmpty()) {
-			result.append("目录不存在");
-			return result.toString();
+			result.append("目录不存在,尝试新解");
+			
+			list = book.select("body > section.ml_main>dl>dd>a");
+			if(list==null || list.isEmpty()) {
+				result.append(">新解目录不存在");
+				return result.toString();
+			}
 		}
 		String lastTitle = newsDao.selectTitleByTid(vo.getId());
 		for (Element e : list) {
@@ -168,8 +184,10 @@ public class SpiderService {
 				LOGGER.info("title:[{}],link:[{}]",title,link);
 				Document page = Jsoup.connect(link).get();
 				Elements content = page.select("#content");
-
 				String ctx = content.html();
+				if(StringUtils.isEmpty(ctx)) {
+					ctx = page.select(".yd_text2").html();
+				}
 				News n = new News();
 				n.setTid(Short.valueOf(vo.getId()));
 				n.setNTitle(title);
@@ -185,7 +203,7 @@ public class SpiderService {
 				int nId = newsDao.getMaxId();
 				result.append("\r\n<a href='book.html?nid="+nId+"'>title:[" + title + "][" + link + "]</a>");
 			}else {
-				LOGGER.debug("title:[{}] lastTitle:[{}]", title,lastTitle);
+				LOGGER.warn("title:[{}] lastTitle:[{}]", title,lastTitle);
 			}
 		}
 		return result.toString();

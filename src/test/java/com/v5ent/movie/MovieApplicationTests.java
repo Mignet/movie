@@ -33,7 +33,7 @@ public class MovieApplicationTests {
 	@Test
 	public void testSpider() throws Exception {
 		UrlVo vo = new UrlVo();
-		vo.setUrl("https://www.ddxs.cc/ddxs/149165/");
+		vo.setUrl("https://www.xiangcunxiaoshuo.la/html/617693/");
 		vo.setId("21");
 		System.out.println(spiderController.spiderNews(vo));
 	}
