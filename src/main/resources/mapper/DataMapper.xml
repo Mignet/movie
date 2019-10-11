@@ -1316,6 +1316,7 @@
                 or 
                 v_nickname LIKE CONCAT('%','${keywords}','%' ) 
         </where>
+        limit 20
     </select>
     
 	<!-- top9 -->
