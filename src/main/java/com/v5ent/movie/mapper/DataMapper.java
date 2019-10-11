@@ -18,6 +18,8 @@ public interface DataMapper {
 
 	Data selectOneByCondition(Data d);
 	
+	List<Data> selectByCondition(Data d);
+	
 	Data selectByPrimaryKey(long vid);
 	
 	List<Data> selectTop60ByTid(long tid);

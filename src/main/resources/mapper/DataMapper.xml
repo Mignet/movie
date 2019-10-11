@@ -1314,7 +1314,7 @@
                 or 
                 v_enname LIKE CONCAT('${keywords}','%' )
                 or 
-                v_nickname LIKE CONCAT('%','${keywords}','%' ) 
+                v_nickname LIKE CONCAT('${keywords}','%' ) 
         </where>
         limit 20
     </select>
