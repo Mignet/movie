@@ -26,6 +26,9 @@ public interface DataMapper {
 
 	@Select("SELECT max(v_id) FROM `sea_data`")
 	Integer getMaxId();
+	
+	@Select("SELECT max(v_hit) FROM `sea_data`")
+	Integer getMaxVhit();
 
 	int updateByPrimaryKeySelective(Data data);
 

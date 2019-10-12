@@ -65,6 +65,15 @@ public class MovieController {
 		return d;
 	}
 	
+	@GetMapping("/movie/{vid}/like")
+	public Data like(@PathVariable("vid") long vid) {
+		LOGGER.info("/movie/{}/like",vid);
+		Data d = dataDao.selectByPrimaryKey(vid);
+		d.setVHit(dataDao.getMaxVhit()+1);
+		dataDao.updateByPrimaryKeySelective(d);
+		return d;
+	}
+	
 	@GetMapping("/type/{tid}/movie")
 	public List<Data> selectByType(@PathVariable("tid") long tid) {
 		return dataDao.selectTop60ByTid(tid);
