@@ -22,6 +22,9 @@ public interface NewsMapper{
 
 	@Select("SELECT n_content from sea_news where n_id=#{id}")
 	String getContentById(String id);
+	
+	@Select("SELECT n_title from sea_news where n_id=#{id}")
+	String selectTitleByNid(String id);
 
 	@Select("select n_id as nId,tid,n_title as nTitle from sea_news where tid=#{tid} order by n_id desc limit 20")
 	List<News> getListByTid(String tid);

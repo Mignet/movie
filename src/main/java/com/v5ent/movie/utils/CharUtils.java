@@ -98,7 +98,7 @@ public final class CharUtils {
 	
 	public static void main(String[] args)
 	{
-		String cnStr = "神奇女侠：血脉";
+		String cnStr = "哪吒之魔童降世";
 		LOGGER.info("{}-->{}",cnStr, getPingYin(cnStr));
 		LOGGER.info("{}-->{}",cnStr, getFirstSpell(cnStr));
 	}
