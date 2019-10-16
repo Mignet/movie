@@ -41,9 +41,10 @@ public class NewsController {
 	@GetMapping("book/{id}")
 	public Map<String,String> readNews(@PathVariable("id") String id) {
 		Map<String,String> m = new HashMap<>();
-		m.put("body",newsDao.getContentById(id));
-		m.put("title",newsDao.selectTitleByNid(id));
-		m.put("nextId",String.valueOf(newsDao.getNextIdByTid(id)));
+		News n = newsDao.selectByPrimaryKey(Long.valueOf(id));
+		m.put("body",n.getNContent());
+		m.put("title",n.getNTitle());
+		m.put("nextId",String.valueOf(newsDao.getNextIdByNid(id)));
 		return m;
 	}
 	

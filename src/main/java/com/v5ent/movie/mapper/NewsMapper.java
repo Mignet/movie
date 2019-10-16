@@ -20,17 +20,15 @@ public interface NewsMapper{
 			"(#{tid},#{nTitle},#{nAddtime},#{nLetter},#{nIsunion},#{nRecycled},#{nEntitle},#{nOutline},#{nFrom},#{nContent})")
 	int insertNews(News news);
 
-	@Select("SELECT n_content from sea_news where n_id=#{id}")
-	String getContentById(String id);
+	News selectByPrimaryKey(Long id);
 	
-	@Select("SELECT n_title from sea_news where n_id=#{id}")
-	String selectTitleByNid(String id);
-
+	int updateByPrimaryKeySelective(News data);
+	
 	@Select("select n_id as nId,tid,n_title as nTitle from sea_news where tid=#{tid} order by n_id desc limit 20")
 	List<News> getListByTid(String tid);
 	
-	@Select("select n_id from `sea_news` where tid = (SELECT tid FROM `sea_news` where n_id = #{tid}) and n_id>#{tid} ORDER BY n_id LIMIT 1")
-	Integer getNextIdByTid(String tid);
+	@Select("select n_id from `sea_news` where tid = (SELECT tid FROM `sea_news` where n_id = #{nid}) and n_id>#{nid} ORDER BY n_id LIMIT 1")
+	Integer getNextIdByNid(String nid);
 
 	@Select("SELECT max(n_id) FROM `sea_news`")
 	Integer getMaxId();

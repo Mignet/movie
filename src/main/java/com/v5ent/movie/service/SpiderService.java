@@ -1,6 +1,8 @@
 package com.v5ent.movie.service;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -54,11 +56,24 @@ public class SpiderService {
 		if(uniontypeList==null) {
 			uniontypeList = typeDao.selectUnionTypes();
 		}
-		Document playlist = Jsoup.connect("http://api.iokzy.com/inc/apickm3u8.php?ac=videolist&t=0&h=24&&pg="+page).get();
-        Element list = playlist.getElementsByTag( "list" ).get(0);
+		//http://www.zdziyuan.com/inc/s_ldgm3u8_sea.php
+		//wd=keysearch
+		//http://api.iokzy.com/inc/apickm3u8.php?ac=videolist&ids=3189
+		Document doc = Jsoup.connect("http://api.iokzy.com/inc/apickm3u8.php?ac=videolist&t=0&h=24&pg="+page).get();//&t=0&h=24
+        Elements playlist = doc.getElementsByTag( "list" );
+        if(playlist!=null && playlist.isEmpty()) {
+        	LOGGER.error("http://api.iokzy.com/inc/apickm3u8.php?ac=videolist&pg={}\r\n{}", page, doc.toString());
+        	try {
+				Thread.sleep(1000L);
+				spiderMovies(result,currentPage);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+        }
+		Element list = playlist.get(0);
         currentPage = Integer.valueOf(list.attr("page"));
         pagecount =  Integer.valueOf(list.attr("pagecount"));
-        LOGGER.info("currentPage[{}],pagecount[{}],pagesize[{}],recordcount[{}]",currentPage,pagecount,list.attr("pagesize"),pagecount,list.attr("pagecount"));
+        LOGGER.info("currentPage[{}],pagecount[{}],pagesize[{}],recordcount[{}]",currentPage,pagecount,list.attr("pagesize"),list.attr("recordcount"));
         Elements videos = list.getElementsByTag("video");
         for(Element e:videos) {
         	Data d = new Data();
@@ -108,6 +123,7 @@ public class SpiderService {
         			dataDao.updateByPrimaryKeySelective(new Data() {{
         				setVId(t.getVId());
         				setVAddtime(d.getVAddtime());
+        				setVNote(t.getVNote());
         				setVPic(d.getVPic());
         			}});
         			playDao.updateByPrimaryKeySelective(new Playdata() {{
@@ -136,6 +152,11 @@ public class SpiderService {
         currentPage++;
         if(currentPage<=pagecount) {
         	result.append("===========准备抓第"+currentPage+"页============<br>");
+        	try {
+				Thread.sleep(1000L);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
         	spiderMovies(result,currentPage);
         }else {
         	LOGGER.info("OK");
@@ -207,5 +228,15 @@ public class SpiderService {
 			}
 		}
 		return result.toString();
+	}
+	public static void main(String[] args) throws MalformedURLException, IOException {
+		//phantomjs server.js 9527
+		String realUrl = "http://m.v5ent.com:9527/http://www.my2852.com/gdwx/jpsh/03.htm";
+		Document book = Jsoup.parse(new URL(realUrl).openStream(), "UTF-8", realUrl);
+		Elements list = book.select("body > center:nth-child(4) > table > tbody > tr");
+		//<table border="0" cellspacing="1" style="font-size: 12pt; font-family: 宋体; line-height:150%"><tbody>
+		System.out.println(list.get(1).toString().replace("15pt", "14pt"));
+//		System.out.println(list.get(3));
+		//</tbody></table>
 	}
 }
