@@ -80,6 +80,29 @@ public class MovieApplicationTests {
 	}
 	
 	@Test
+	public void testHLM() {
+		for(News n:newsDao.selectAllByTid(25)) {
+			StringBuilder sb = new StringBuilder("<table border=\"0\" cellspacing=\"1\" style=\"font-size: 12pt; font-family: 宋体; line-height:150%\">\n" + 
+					"			<tbody>\n" + 
+					"			<tr>\n" + 
+					"				<td height=\"50\" style=\"font-size: 14pt; font-family: 黑体; color: #B10000; \" align=\"center\">");
+			sb.append(n.getNTitle());
+			sb.append("</td>\n" + 
+					"			</tr>\n" + 
+					"			\n" + 
+					"<tr>\n" + 
+					"<td>");
+			sb.append(n.getNContent().replace("<script>chaptererror();</script>", ""))
+			.append("</td></tr>\n" + 
+					"		</tbody></table>");
+			newsDao.updateByPrimaryKeySelective(new News() {{
+				setNId(n.getNId());
+				setNContent(sb.toString());
+			}});
+		}
+	}
+	
+	@Test
 	public void testSHZ() throws IOException {
 		Integer nId = 8363;
 		for(int i=4;i<=70;i++) {
@@ -88,6 +111,13 @@ public class MovieApplicationTests {
 		}
 	}
 	
+	/**
+	 * jp shz
+	 * @param nId
+	 * @param i
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
 	public void doex(int nId,int i) throws MalformedURLException, IOException {
 		String s = i<10?"0"+i:""+i;
 		String realUrl = "http://m.v5ent.com:9527/http://www.my2852.com/gdwx/jpsh/"+s+".htm";
