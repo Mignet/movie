@@ -33,6 +33,6 @@ public interface NewsMapper{
 	@Select("SELECT max(n_id) FROM `sea_news`")
 	Integer getMaxId();
 
-	@Select("SELECT n_id as nId,tid,n_title as nTitle FROM `sea_news` where tid=#{tid} order by n_id")
+	@Select("SELECT n_id as nId,tid,n_title as nTitle,n_content as nContent FROM `sea_news` where tid=#{tid} order by n_id")
 	List<News> selectAllByTid(long tid);
 }
