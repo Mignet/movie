@@ -148,4 +148,35 @@ CREATE TABLE `sea_type`  (
   INDEX `torder`(`torder`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 116 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '影片分类表' ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of sea_type
+-- ----------------------------
+INSERT INTO `sea_type` VALUES (2, 0, '电视剧', 'dianshiju', 2, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_2', 0);
+INSERT INTO `sea_type` VALUES (3, 0, '综艺', 'zongyi', 3, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_3,3_27,3_26,3_29,3_28', 0);
+INSERT INTO `sea_type` VALUES (1, 0, '电影', 'dianying', 1, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_1', 0);
+INSERT INTO `sea_type` VALUES (4, 0, '动漫', 'dongman', 4, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_4,3_23,3_24,3_25,3_32,3_31', 0);
+INSERT INTO `sea_type` VALUES (5, 2, '国产剧', 'guochan', 5, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_12', 0);
+INSERT INTO `sea_type` VALUES (6, 2, '香港剧', 'hongkong', 6, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_13', 0);
+INSERT INTO `sea_type` VALUES (7, 2, '韩国剧', 'hanguo', 7, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_14', 0);
+INSERT INTO `sea_type` VALUES (8, 2, '欧美剧', 'oumei', 8, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_15', 0);
+INSERT INTO `sea_type` VALUES (9, 2, '台湾剧', 'taiwan', 9, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_16', 0);
+INSERT INTO `sea_type` VALUES (10, 2, '日本剧', 'riben', 10, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_17', 0);
+INSERT INTO `sea_type` VALUES (11, 2, '海外剧', 'haiwai', 11, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_18', 0);
+INSERT INTO `sea_type` VALUES (12, 1, '动作片', 'dongzuo', 12, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_5', 0);
+INSERT INTO `sea_type` VALUES (13, 1, '喜剧片', 'xiju', 13, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_6', 0);
+INSERT INTO `sea_type` VALUES (14, 1, '爱情片', 'aiqing', 14, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_7', 0);
+INSERT INTO `sea_type` VALUES (15, 1, '科幻片', 'kehuan', 15, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_8', 0);
+INSERT INTO `sea_type` VALUES (16, 1, '恐怖片', 'kongbu', 16, 'channel.html', 'content.html', 'play.html', '', '', '', 1, '3_9', 0);
+INSERT INTO `sea_type` VALUES (17, 1, '剧情片', 'juqing', 17, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_10', 0);
+INSERT INTO `sea_type` VALUES (18, 1, '战争片', 'zhanzhen', 18, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_11', 0);
+INSERT INTO `sea_type` VALUES (19, 1, '纪录片', 'jilu', 19, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '3_19', 0);
+INSERT INTO `sea_type` VALUES (20, 1, '伦理片', 'lunli', 20, 'channel.html', 'content.html', 'play.html', '', '', '', 0, '', 0);
+INSERT INTO `sea_type` VALUES (21, 0, '明天下', 'mingtianxia', 21, 'newspage.html', 'news.html', 'play.html', '', '', '', 0, '', 1);
+INSERT INTO `sea_type` VALUES (22, 0, '赘婿', 'zhuixu', 22, 'newspage.html', 'news.html', 'play.html', '', '', '', 0, '', 1);
+INSERT INTO `sea_type` VALUES (23, 0, '大道朝天', 'dadaochaotian', 23, 'newspage.html', 'news.html', 'play.html', '', '', '', 0, '', 1);
+INSERT INTO `sea_type` VALUES (24, 0, '诡秘之主', 'guimizhizhu', 24, 'newspage.html', 'news.html', 'play.html', '', '', '', 0, '', 1);
+INSERT INTO `sea_type` VALUES (25, 0, '红楼梦', 'hongloumeng', 25, 'newspage.html', 'news.html', 'play.html', '', '', '', 0, '', 1);
+INSERT INTO `sea_type` VALUES (26, 0, '水浒传', 'shuihu', 26, 'newspage.html', 'news.html', 'play.html', '', '', '', 0, '', 1);
+INSERT INTO `sea_type` VALUES (27, 0, '时尚', 'shishang', 27, 'newspage.html', 'news.html', 'play.html', '', '', '', 0, '', 1);
+
 SET FOREIGN_KEY_CHECKS = 1;
