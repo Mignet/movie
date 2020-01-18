@@ -1,17 +1,5 @@
 /*
- Navicat Premium Data Transfer
-
- Source Server         : test
- Source Server Type    : MySQL
- Source Server Version : 50173
- Source Host           : www.v5ent.com:3306
- Source Schema         : seacms
-
- Target Server Type    : MySQL
- Target Server Version : 50173
- File Encoding         : 65001
-
- Date: 18/01/2020 18:11:20
+ initail database struct
 */
 
 SET NAMES utf8mb4;
