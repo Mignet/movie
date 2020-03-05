@@ -17,6 +17,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -45,12 +46,17 @@ public class SpiderService {
 	private DescMapper descDao;
 	@Resource
 	private NewsMapper newsDao;
+
+	@Value("${biz.spider.source}")
+	private String source;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(SpiderService.class);
 	
 	private List<Map<String, String>> uniontypeList = null;
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private int currentPage = 1;int pagecount = 10;
+//	private static String SOURCE = "http://api.iokzy.com/inc/apickm3u8.php";
+//	private static String SOURCE1 = "http://www.zdziyuan.com/inc/s_ldgm3u8_sea.php";
 	
 	public void spiderMovies(StringBuilder result,int page) throws IOException {
 		if(uniontypeList==null) {
@@ -59,10 +65,10 @@ public class SpiderService {
 		//http://www.zdziyuan.com/inc/s_ldgm3u8_sea.php
 		//wd=keysearch
 		//http://api.iokzy.com/inc/apickm3u8.php?ac=videolist&ids=3189
-		Document doc = Jsoup.connect("http://api.iokzy.com/inc/apickm3u8.php?ac=videolist&t=0&h=24&pg="+page).get();//&t=0&h=24
+		Document doc = Jsoup.connect(source+"?ac=videolist&t=0&h=24&pg="+page).get();//&t=0&h=24
         Elements playlist = doc.getElementsByTag( "list" );
         if(playlist!=null && playlist.isEmpty()) {
-        	LOGGER.error("http://api.iokzy.com/inc/apickm3u8.php?ac=videolist&pg={}\r\n{}", page, doc.toString());
+        	LOGGER.error(source+"?ac=videolist&pg={}\r\n{}", page, doc.toString());
         	try {
 				Thread.sleep(1000L);
 				spiderMovies(result,currentPage);
@@ -113,7 +119,7 @@ public class SpiderService {
         		d.setVActor(d.getVActor().substring(0, 200));
         	}
         	d.setVDirector(e.selectFirst("director").text());
-        	d.setBody("酷M3U8$$"+e.selectFirst("dl>dd").text());
+        	d.setBody("酷M3U8$$"+e.selectFirst("dl>dd").text().replace("$zuidam3u8",""));
         	d.setDesc(e.selectFirst("des").text());
    
         	Data t = dataDao.selectOneByCondition(new Data() {{setVName(d.getVName());}});
