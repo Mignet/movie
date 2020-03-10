@@ -94,5 +94,13 @@ public class MovieController {
 		spider.spiderMovies(result,1);
 		return result.toString();
 	}
-	
+
+	@PostMapping("movie2")
+	public String spiderMoviesByBak() throws IOException {
+		StringBuilder result = new StringBuilder("ok");
+		String SOURCE = "http://www.zdziyuan.com/inc/s_ldgm3u8_sea.php";
+		spider.spiderMoviesWithSource(SOURCE,result,1);
+		return result.toString();
+	}
+
 }
